@@ -1,6 +1,7 @@
 class MarksController < ApplicationController
   def create
-    @mark = Mark.create!(params[:mark])
+    @stamp = Stamp.find(params[:stamp_id])
+    @mark = @stamp.marks.create!(:marked_on => params[:date])
     flash[:notice] = "Successfully created mark."
     redirect_to root_url
   end

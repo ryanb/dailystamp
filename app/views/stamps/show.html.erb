@@ -1,5 +1,9 @@
 <% title "Stamp" %>
 <% stylesheet "calendar" %>
+<% javascript "jquery-1.3.2.min", "stamp" %>
+<% content_for :head do %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+<% end %>
 
 <p>
   <strong>User:</strong>
@@ -24,10 +28,12 @@
   <h2 id="month">
     <%=h Date.today.strftime("%B %Y") %>
   </h2>
-  <% calendar_for([]) do |calendar| %>
+  <% calendar_for(@stamp.marks) do |calendar| %>
     <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
-    <% calendar.day do |day, item| %>
+    <% calendar.day(:day_method => :marked_on) do |day, marks| %>
       <%= day.day %>
+      <%= link_to "", marks_path(:stamp_id => @stamp, :date => day.to_s("%Y-%m-%d")), :class => "mark_link" %>
+      <%= "marked" if marks.first %>
     <% end %>
   <% end %>
 </div>

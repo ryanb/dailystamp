@@ -4,10 +4,11 @@ describe MarksController do
   fixtures :all
   integrate_views
   
-  it "create action should redirect when model is valid" do
-    Mark.any_instance.stubs(:valid?).returns(true)
-    post :create
+  it "create action should create mark with given stamp id and date" do
+    post :create, :stamp_id => Stamp.first.id, :date => "2009-02-01"
     response.should redirect_to(root_url)
+    Mark.last.marked_on.should == Date.parse("2009-02-01")
+    Mark.last.stamp_id.should == Stamp.first.id
   end
   
   it "destroy action should destroy model and redirect to index action" do
