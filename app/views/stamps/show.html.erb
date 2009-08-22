@@ -1,4 +1,5 @@
 <% title "Stamp" %>
+<% stylesheet "calendar" %>
 
 <p>
   <strong>User:</strong>
@@ -18,3 +19,15 @@
   <%= link_to "Destroy", @stamp, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", stamps_path %>
 </p>
+
+<div id="calendar">
+  <h2 id="month">
+    <%=h Date.today.strftime("%B %Y") %>
+  </h2>
+  <% calendar_for([]) do |calendar| %>
+    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <% calendar.day do |day, item| %>
+      <%= day.day %>
+    <% end %>
+  <% end %>
+</div>
