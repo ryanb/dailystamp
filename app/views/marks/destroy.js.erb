@@ -1,2 +1,3 @@
 $("#day_<%= @mark.marked_on.strftime("%Y%m%d") %> .mark").remove();
-$("#day_<%= @mark.marked_on.strftime("%Y%m%d") %> .mark_link").attr("href", "<%= marks_path(:stamp_id => @mark.stamp, :date => @mark.marked_on.to_s("%Y-%m-%d")) %>");
+$("#day_<%= @mark.marked_on.strftime("%Y%m%d") %> .mark_link").attr("href", "<%= escape_javascript marks_path(:stamp_id => @mark.stamp, :date => @mark.marked_on.to_s("%Y-%m-%d")) %>");
+<%= render "reset_points" %>

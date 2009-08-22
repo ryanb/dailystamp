@@ -1,0 +1,5 @@
+<% if @mark.stamp %>
+  <% @mark.stamp.month_points(@mark.marked_on).each_with_index do |day_points, index| %>
+    $("#day_<%= @mark.marked_on.strftime("%Y%m#{index+1}") %> .points").html("<%= escape_javascript points(day_points) %>");
+  <% end %>
+<% end %>
