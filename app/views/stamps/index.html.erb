@@ -1,21 +1,27 @@
-<% title "Stamps" %>
+<% title "Daily Stamp" %>
+<p><em>Build a new habit or stop an old one</em></p>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Name</th>
-    <th>Private</th>
-  </tr>
-  <% for stamp in @stamps %>
-    <tr>
-      <td><%=h stamp.user_id %></td>
-      <td><%=h stamp.name %></td>
-      <td><%=h stamp.private %></td>
-      <td><%= link_to "Show", stamp %></td>
-      <td><%= link_to "Edit", edit_stamp_path(stamp) %></td>
-      <td><%= link_to "Destroy", stamp, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<h2>Create a new stamp</h2>
+<% form_for Stamp.new do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.check_box :private %> <%= f.label :private %></p>
+  <p><%= f.submit "Get Started" %></p>
+<% end %>
 
-<p><%= link_to "New Stamp", new_stamp_path %></p>
+<h2>Ideas</h2>
+<ul>
+  <li>Inbox zero</li>
+  <li>Practice piano 30 minutes</li>
+  <li>Brush twice, floss once</li>
+  <li>Exercise 15 minutes</li>
+  <li>Always be on time</li>
+  <li>Keep car clean</li>
+</ul>
+
+<h2>Other stamps</h2>
+<ul>
+<% for stamp in Stamp.all(:limit => 5) %>
+  <li><%=link_to h(stamp.name), stamp %></li>
+<% end %>
+</ul>
