@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%=h @stamp.user_id %>
+  <%=h @stamp.user.username if @stamp.user %>
 </p>
 <p>
   <strong>Name:</strong>

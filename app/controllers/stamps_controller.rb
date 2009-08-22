@@ -13,6 +13,7 @@ class StampsController < ApplicationController
   
   def create
     @stamp = Stamp.new(params[:stamp])
+    @stamp.user = current_user
     if @stamp.save
       flash[:notice] = "Successfully created stamp."
       redirect_to @stamp
