@@ -1,0 +1,20 @@
+<% title "Stamp" %>
+
+<p>
+  <strong>User:</strong>
+  <%=h @stamp.user_id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%=h @stamp.name %>
+</p>
+<p>
+  <strong>Private:</strong>
+  <%=h @stamp.private %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_stamp_path(@stamp) %> |
+  <%= link_to "Destroy", @stamp, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", stamps_path %>
+</p>

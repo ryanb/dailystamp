@@ -1,0 +1,21 @@
+<% title "Stamps" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Private</th>
+  </tr>
+  <% for stamp in @stamps %>
+    <tr>
+      <td><%=h stamp.user_id %></td>
+      <td><%=h stamp.name %></td>
+      <td><%=h stamp.private %></td>
+      <td><%= link_to "Show", stamp %></td>
+      <td><%= link_to "Edit", edit_stamp_path(stamp) %></td>
+      <td><%= link_to "Destroy", stamp, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Stamp", new_stamp_path %></p>
