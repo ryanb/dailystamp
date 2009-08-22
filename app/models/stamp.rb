@@ -1,4 +1,6 @@
 class Stamp < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+  
   attr_accessible :name, :private
   belongs_to :user
   has_many :marks, :dependent => :destroy
@@ -9,6 +11,7 @@ class Stamp < ActiveRecord::Base
       marks.find_by_marked_on(day) ? @tracker.mark : @tracker.miss
     end
   end
+  memoize :month_points
   
   # TODO remove duplication
   def month_tracker(date)
@@ -26,6 +29,6 @@ class Stamp < ActiveRecord::Base
   end
   
   def day_points(date)
-    month_points(date)[date.day-1]
+    month_points(date.beginning_of_month)[date.day-1]
   end
 end
