@@ -40,3 +40,10 @@
 #calendar .mark {
   position: absolute;
 }
+
+#calendar .points {
+  float: right;
+  margin-top: 60px;
+  font-size: 13px;
+  color: #000;
+}
