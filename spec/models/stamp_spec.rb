@@ -54,4 +54,22 @@ describe Stamp do
       @stamp.month_points(Date.new(2009, 4)).should == [0]*30
     end
   end
+  
+  it "should use score cache if there is one" do
+    stamp = Stamp.new
+    stamp.score_cache = 123
+    stamp.score.should == 123
+  end
+  
+  it "should calculate score and set cache" do
+    stamp = Stamp.create!
+    stamp.marks.create!(:marked_on => "2009-01-01")
+    stamp.marks.create!(:marked_on => "2009-01-02")
+    stamp.score.should == 3
+    stamp.reload.score_cache.should == 3
+  end
+  
+  it "should have zero score if no marks" do
+    Stamp.new.score.should be_zero
+  end
 end

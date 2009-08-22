@@ -15,6 +15,10 @@ class Stamp < ActiveRecord::Base
   end
   memoize :month_points
   
+  def score
+    score_cache || calculate_score
+  end
+  
   private
   
   def mark_on_day(date)
@@ -40,7 +44,9 @@ class Stamp < ActiveRecord::Base
         0
       elsif mark_on_day(day)
         finished = true if mark_on_day(day) == last_mark
-        mark_on_day(day).skip? ? tracker.skip : tracker.mark
+        points = mark_on_day(day).skip? ? tracker.skip : tracker.mark
+        update_attribute(:score_cache, tracker.score) if finished
+        points
       else
         tracker.miss
       end
@@ -55,5 +61,14 @@ class Stamp < ActiveRecord::Base
   
   def last_mark
     @last_mark ||= marks.last(:order => "marked_on")
+  end
+  
+  def calculate_score
+    if last_mark
+      month_points(last_mark.marked_on)
+      score_cache
+    else
+      0
+    end
   end
 end

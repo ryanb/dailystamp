@@ -3,3 +3,4 @@
     $("#day_<%= @mark.marked_on.strftime("%Y%m#{(index+1).to_s.rjust(2, '0')}") %> .points").html("<%= escape_javascript points(day_points) %>");
   <% end %>
 <% end %>
+$("#score_value").html("<%= @mark.stamp.score %>");
