@@ -14,6 +14,11 @@ describe MarksController do
     mark.position_y.should == 456
   end
   
+  it "should render template when js action" do
+    post :create, :format => "js", :stamp_id => Stamp.first.id
+    response.should render_template("create")
+  end
+  
   it "destroy action should destroy model and redirect to index action" do
     mark = Mark.first
     delete :destroy, :id => mark
