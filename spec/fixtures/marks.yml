@@ -1,0 +1,9 @@
+one:
+  stamp_id: 1
+  skip: false
+  marked_on: 2009-08-21
+
+two:
+  stamp_id: 1
+  skip: false
+  marked_on: 2009-08-21
