@@ -8,5 +8,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   
-  map.root :login
+  map.root :stamps
 end
