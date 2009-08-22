@@ -10,14 +10,8 @@ class Stamp < ActiveRecord::Base
   end
   
   def month_points(date)
-    @tracker = last_month_tracker(date) || ScoreTracker.new
-    (date.beginning_of_month..date.end_of_month).map do |day|
-      if mark_on_day(day)
-        mark_on_day(day).skip? ? @tracker.skip : @tracker.mark
-      else
-        @tracker.miss
-      end
-    end
+    tracker = last_month_tracker(date) || ScoreTracker.new
+    track_month_points(tracker, date)
   end
   memoize :month_points
   
@@ -34,20 +28,32 @@ class Stamp < ActiveRecord::Base
   
   # TODO remove duplication
   def month_tracker(date)
-    @tracker = last_month_tracker(date) || ScoreTracker.new
-    (date.beginning_of_month..date.end_of_month).each do |day|
-      if mark_on_day(day)
-        mark_on_day(day).skip? ? @tracker.skip : @tracker.mark
+    tracker = last_month_tracker(date) || ScoreTracker.new
+    track_month_points(tracker, date)
+    tracker
+  end
+  
+  def track_month_points(tracker, date)
+    finished = (last_mark && last_mark.marked_on < date.beginning_of_month)
+    (date.beginning_of_month..date.end_of_month).map do |day|
+      if finished
+        0
+      elsif mark_on_day(day)
+        finished = true if mark_on_day(day) == last_mark
+        mark_on_day(day).skip? ? tracker.skip : tracker.mark
       else
-        @tracker.miss
+        tracker.miss
       end
     end
-    @tracker
   end
   
   def last_month_tracker(date)
     if marks.exists?(["marked_on < ?", date.beginning_of_month])
       month_tracker(date.beginning_of_month-1.day)
     end
+  end
+  
+  def last_mark
+    @last_mark ||= marks.last(:order => "marked_on")
   end
 end
