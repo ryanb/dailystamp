@@ -37,7 +37,7 @@ $(function() {
       $("body").unbind("mousemove");
       $("#stamp_cursor").unbind("click").hide();
       var element = document.elementFromPoint(event.pageX, event.pageY);
-      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link")) {
+      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
         $("#stamp_cursor").attr("src", "/images/stamper/stamping.png").show();
         var p = $(element).position();
         var x = (event.pageX - p.left);
