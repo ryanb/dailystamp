@@ -5,6 +5,7 @@ class StampsController < ApplicationController
   
   def show
     @stamp = Stamp.find(params[:id])
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
   
   def new

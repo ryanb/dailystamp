@@ -26,12 +26,14 @@
 
 <div id="calendar">
   <h2 id="month">
-    <%=h Date.today.strftime("%B %Y") %>
+    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
+    <%=h @date.strftime("%B %Y") %>
+    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
   </h2>
-  <% calendar_for(@stamp.marks) do |calendar| %>
+  <% calendar_for(@stamp.marks, :year => @date.year, :month => @date.month) do |calendar| %>
     <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
     <% calendar.day(:day_method => :marked_on, :id => "day_%Y%m%d") do |day, marks| %>
-      <% if day.month == Date.today.month %>
+      <% if day.month == @date.month %>
         <% if marks.first %>
           <%= mark_image(marks.first) %>
           <%= link_to "", marks.first, :class => "mark_link" %>
