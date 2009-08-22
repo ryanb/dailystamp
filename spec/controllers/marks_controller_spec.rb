@@ -15,7 +15,7 @@ describe MarksController do
   end
   
   it "create action should render template when js action" do
-    post :create, :format => "js", :stamp_id => Stamp.first.id
+    post :create, :format => "js", :stamp_id => Stamp.first.id, :date => "2009-02-01"
     response.should render_template("create")
   end
   
