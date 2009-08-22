@@ -35,6 +35,7 @@
 
 #calendar #month a {
   text-decoration: none;
+  padding: 0 10px;
 }
 
 #calendar .mark {

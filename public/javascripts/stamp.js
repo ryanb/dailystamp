@@ -17,5 +17,11 @@ $(function() {
         $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y}, null, "script");
       }
     }
+    return false;
+  });
+  
+  $("#calendar #month a").live("click", function(event) {
+    $.getScript(this.href);
+    return false;
   });
 });
