@@ -12,7 +12,11 @@ class Stamp < ActiveRecord::Base
   def month_points(date)
     @tracker = last_month_tracker(date) || ScoreTracker.new
     (date.beginning_of_month..date.end_of_month).map do |day|
-      mark_on_day(day) ? @tracker.mark : @tracker.miss
+      if mark_on_day(day)
+        mark_on_day(day).skip? ? @tracker.skip : @tracker.mark
+      else
+        @tracker.miss
+      end
     end
   end
   memoize :month_points
@@ -32,7 +36,11 @@ class Stamp < ActiveRecord::Base
   def month_tracker(date)
     @tracker = last_month_tracker(date) || ScoreTracker.new
     (date.beginning_of_month..date.end_of_month).each do |day|
-      mark_on_day(day) ? @tracker.mark : @tracker.miss
+      if mark_on_day(day)
+        mark_on_day(day).skip? ? @tracker.skip : @tracker.mark
+      else
+        @tracker.miss
+      end
     end
     @tracker
   end

@@ -14,7 +14,7 @@ $(function() {
         var p = $(this).position();
         var x = (event.pageX - p.left);
         var y = (event.pageY - p.top);
-        $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y}, null, "script");
+        $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y, skip: "true" }, null, "script");
       }
     }
     return false;

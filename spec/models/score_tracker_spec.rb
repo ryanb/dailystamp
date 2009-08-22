@@ -42,4 +42,8 @@ describe ScoreTracker do
       @tracker.miss, @tracker.miss, @tracker.miss, @tracker.miss, @tracker.mark].should ==
       [1, 2, 2, -1, 2, 2, -1, -2, -2, -3, 1]
   end
+  
+  it "skip should continue on as if nothing happened" do
+    [@tracker.mark, @tracker.skip, @tracker.skip, @tracker.mark].should == [1, 0, 0, 2]
+  end
 end

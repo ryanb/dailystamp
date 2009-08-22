@@ -14,6 +14,13 @@ describe MarksController do
     mark.position_y.should == 456
   end
   
+  it "create action should create mark with skip" do
+    post :create, :stamp_id => Stamp.first.id, :date => "2009-02-01", :skip => "true"
+    response.should redirect_to(root_url)
+    mark = Mark.last
+    mark.skip.should be_true
+  end
+  
   it "create action should render template when js action" do
     post :create, :format => "js", :stamp_id => Stamp.first.id, :date => "2009-02-01"
     response.should render_template("create")

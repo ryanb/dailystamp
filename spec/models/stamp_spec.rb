@@ -33,4 +33,11 @@ describe Stamp do
     stamp.marks.create!(:marked_on => "2009-04-01")
     stamp.day_points(Date.new(2009, 4, 2)).should == -1
   end
+  
+  it "month points should be 1 on first mark but -1 on next miss" do
+    stamp = Stamp.create!
+    stamp.marks.create!(:marked_on => "2009-04-01")
+    stamp.marks.create!(:marked_on => "2009-04-02", :skip => true)
+    stamp.month_points(Date.new(2009, 4)).should == [1, 0, -1] + [0]*27
+  end
 end

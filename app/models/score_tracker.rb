@@ -19,6 +19,11 @@ class ScoreTracker
     @positive_points
   end
   
+  def skip
+    # keep scores as they are
+    0
+  end
+  
   def miss
     @position = 0 if @negative_points.zero?
     if @position == @negative_points
