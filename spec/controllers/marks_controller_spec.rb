@@ -14,7 +14,7 @@ describe MarksController do
     mark.position_y.should == 456
   end
   
-  it "should render template when js action" do
+  it "create action should render template when js action" do
     post :create, :format => "js", :stamp_id => Stamp.first.id
     response.should render_template("create")
   end
@@ -24,5 +24,11 @@ describe MarksController do
     delete :destroy, :id => mark
     response.should redirect_to(root_url)
     Mark.exists?(mark.id).should be_false
+  end
+  
+  it "destroy action should render template when js action" do
+    mark = Mark.first
+    delete :destroy, :id => mark, :format => "js"
+    response.should render_template("destroy")
   end
 end

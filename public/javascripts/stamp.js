@@ -7,9 +7,13 @@ $(document).ajaxSend(function(event, request, settings) {
 
 $(function() {
   $("#calendar td").live("click", function(event) {
-    var p = $(this).position();
-    var x = (event.pageX - p.left);
-    var y = (event.pageY - p.top);
-    $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y}, null, "script");
+    if ($(this).children(".mark").length > 0) {
+      $.post($(this).children("a.mark_link").attr("href"), { _method: "delete" }, null, "script");
+    } else {
+      var p = $(this).position();
+      var x = (event.pageX - p.left);
+      var y = (event.pageY - p.top);
+      $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y}, null, "script");
+    }
   });
 });
