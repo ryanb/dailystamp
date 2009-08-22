@@ -32,4 +32,14 @@ describe ScoreTracker do
     4.times { @tracker.miss }
     @tracker.mark.should == 1
   end
+  
+  it "should alternate misses and marks properly" do
+    [@tracker.mark, @tracker.miss, @tracker.mark, @tracker.miss].should == [1, -1, 1, -1]
+  end
+  
+  it "should handle complex scenarios" do
+    [@tracker.mark, @tracker.mark, @tracker.mark, @tracker.miss, @tracker.mark, @tracker.mark,
+      @tracker.miss, @tracker.miss, @tracker.miss, @tracker.miss, @tracker.mark].should ==
+      [1, 2, 2, -1, 2, 2, -1, -2, -2, -3, 1]
+  end
 end
