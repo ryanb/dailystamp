@@ -1,35 +1,31 @@
-<% title "Stamp" %>
+<% title "Stamp: #{@stamp.name}", false %>
 <% stylesheet "stamp" %>
 <% javascript "jquery-1.3.2.min", "stamp" %>
 <% content_for :head do %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%=h @stamp.user.username if @stamp.user %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%=h @stamp.name %>
-</p>
-<p>
-  <strong>Private:</strong>
-  <%=h @stamp.private %>
-</p>
-
-
-<p>
-  <%= link_to "Edit", edit_stamp_path(@stamp) %> |
-  <%= link_to "Destroy", @stamp, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", stamps_path %>
-</p>
+<h2>Stamps</h2>
+<ul>
+<% for stamp in current_user.stamps %>
+  <li><%= link_to_unless_current h(stamp.name), stamp %></li>
+<% end %>
+  <li><%= link_to "New Stamp", new_stamp_path %></li>
+</ul>
 
 <div id="score">
   Score: <span id="score_value"><%=h @stamp.score %></span>
 </div>
 
-<p id="stamper"><%= link_to image_tag("stamper.png", :size => "65x65"), "#stamptoday" %></p>
+<h1><%=h @stamp.name %></h1>
+<p>
+  <%= link_to "Edit", edit_stamp_path(@stamp) %> |
+  <%= link_to "Destroy", @stamp, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<p id="stamper">
+  <%= link_to image_tag("stamper/ready.png", :size => "87x114"), "#stamptoday" %>
+  <%= image_tag "stamper/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
+</p>
 
 <div id="calendar">
   <%= render 'calendar' %>

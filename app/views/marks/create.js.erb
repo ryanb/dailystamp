@@ -1,3 +1,5 @@
 $("#day_<%= @mark.marked_on.strftime("%Y%m%d") %>").prepend("<%= escape_javascript mark_image(@mark) %>");
 $("#day_<%= @mark.marked_on.strftime("%Y%m%d") %> .mark_link").attr("href", "<%= escape_javascript mark_path(@mark) %>");
+$("#stamp_cursor").hide();
+$("#stamper a img").attr("src", "/images/stamper/ready.png");
 <%= render "reset_points" %>

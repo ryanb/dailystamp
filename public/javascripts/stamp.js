@@ -19,7 +19,6 @@ $(function() {
         $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y, skip: !stamping }, null, "script");
       }
       stamping = false;
-      $("#stamper img").css({ display: "inline" });
     }
     return false;
   });
@@ -29,13 +28,31 @@ $(function() {
     return false;
   });
   
-  $("#stamper a").live("click", function(event) {
-    $("#stamper img").css({
-      //top: (event.pageY - 65) + 'px',
-      //left: (event.pageX - 32) + 'px',
-      display: "none"
+  $("#stamper a").click(function(click_event) {
+    $("#stamper a img").attr("src", "/images/stamper/ink.png");
+    $("#stamp_cursor").attr("src", "/images/stamper/holding.png").show().css({
+      left: (click_event.pageX - 40) + 'px',
+      top: (click_event.pageY - 45) + 'px'
+    }).click(function(event) {
+      $("body").unbind("mousemove");
+      $("#stamp_cursor").unbind("click").hide();
+      var element = document.elementFromPoint(event.pageX, event.pageY);
+      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link")) {
+        $("#stamp_cursor").attr("src", "/images/stamper/stamping.png").show();
+        var p = $(element).position();
+        var x = (event.pageX - p.left);
+        var y = (event.pageY - p.top);
+        $.post($(element).children("a.mark_link").attr("href"), { x: x, y: y }, null, "script");
+      } else {
+        $("#stamper a img").attr("src", "/images/stamper/ready.png");
+      }
     });
-    stamping = true;
+    $("body").mousemove(function(event) {
+      $("#stamp_cursor").css({
+        left: (event.pageX - 40) + 'px',
+        top: (event.pageY - 45) + 'px'
+      });
+    });
     return false;
   });
 });

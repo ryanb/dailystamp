@@ -21,7 +21,7 @@
 #calendar td {
   background: #FFF;
   color: #999;
-  height: 80px;
+  height: 90px;
   vertical-align: top;
   font-size: 18px;
 }
@@ -44,7 +44,7 @@
 
 #calendar .points {
   float: right;
-  margin-top: 60px;
+  margin-top: 70px;
   font-size: 13px;
   color: #000;
 }
@@ -56,4 +56,11 @@
 #score {
   font-size: 30px;
   font-weight: bold;
+  float: right;
+}
+
+#stamp_cursor {
+  position: absolute;
+  z-index: 1;
+  cursor: none;
 }
