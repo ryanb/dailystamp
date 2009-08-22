@@ -5,13 +5,17 @@
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 <% end %>
 
-<h2>Stamps</h2>
-<ul>
-<% for stamp in current_user.stamps %>
-  <li><%= link_to_unless_current h(stamp.name), stamp %></li>
+<%= render 'layouts/user_info' %>
+
+<% if current_user %>
+  <h2>Stamps</h2>
+  <ul>
+  <% for stamp in current_user.stamps %>
+    <li><%= link_to_unless_current h(stamp.name), stamp %></li>
+  <% end %>
+    <li><%= link_to "New Stamp", new_stamp_path %></li>
+  </ul>
 <% end %>
-  <li><%= link_to "New Stamp", new_stamp_path %></li>
-</ul>
 
 <div id="score">
   Score: <span id="score_value"><%=h @stamp.score %></span>

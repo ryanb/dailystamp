@@ -1,0 +1,60 @@
+#logo {
+  display: block;
+  margin: 60px auto;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+form input {
+  font-size: 20px;
+}
+
+form #stamp_name {
+  width: 330px;
+}
+
+#new_stamp {
+  width: 490px;
+  max-width: 490px;
+  margin: 0 auto;
+}
+
+#suggestions {
+  margin-top: 20px;
+  margin-right: 40px;
+  background-color: #EEE;
+  border: solid 3px #CCC;
+  padding: 0 20px;
+  font-size: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+
+#suggestions h3 {
+  font-size: 22px;
+  color: #AAA;
+  font-weight: normal;
+  margin: 0;
+  margin-top: 20px;
+}
+
+#suggestions ul {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+#suggestions li {
+  margin: 10px 0;
+  padding: 0;
+}
+
+#suggestions li, #suggestions li a, #suggestions li a:hover {
+  color: #444;
+  text-decoration: none;
+}

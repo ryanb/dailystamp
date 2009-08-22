@@ -1,27 +1,26 @@
-<% title "Daily Stamp" %>
-<p><em>Build a new habit or stop an old one</em></p>
+<% title "Daily Stamp", false %>
+<% stylesheet "home" %>
 
-<h2>Create a new stamp</h2>
-<% form_for Stamp.new do |f| %>
-  <%= f.error_messages %>
-  <p><%= f.text_field :name %></p>
-  <p><%= f.check_box :private %> <%= f.label :private %></p>
-  <p><%= f.submit "Get Started" %></p>
-<% end %>
+<%= image_tag("dailystamp_big.gif", :size => "599x157", :alt => "Daily Stamp", :id => "logo") %>
 
-<h2>Ideas</h2>
-<ul>
-  <li>Inbox zero</li>
-  <li>Practice piano 30 minutes</li>
-  <li>Brush twice, floss once</li>
-  <li>Exercise 15 minutes</li>
-  <li>Always be on time</li>
-  <li>Keep car clean</li>
-</ul>
+<div id="new_stamp">
+  <h2>What do you want to do daily?</h2>
 
-<h2>Other stamps</h2>
-<ul>
-<% for stamp in Stamp.all(:limit => 5) %>
-  <li><%=link_to h(stamp.name), stamp %></li>
-<% end %>
-</ul>
+  <% form_for Stamp.new do |f| %>
+    <%= f.error_messages %>
+    <p><%= f.text_field :name, :size => 30 %> <%= f.submit "Get Started" %></p>
+  <% end %>
+
+  <div id="suggestions">
+    <h3>suggestions</h3>
+    <ul>
+      <li><a href="#">Inbox zero</a></li>
+      <li><a href="#">Practice piano 30 minutes</a></li>
+      <li><a href="#">Brush twice, floss once</a></li>
+      <li><a href="#">Exercise 15 minutes</a></li>
+      <li><a href="#">Be on time</a></li>
+      <li><a href="#">Keep car clean</a></li>
+    </ul>
+    <p><%= link_to "more" %></p>
+  </div>
+</div>
