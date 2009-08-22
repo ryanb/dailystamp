@@ -3,15 +3,29 @@ class Stamp < ActiveRecord::Base
   belongs_to :user
   has_many :marks, :dependent => :destroy
   
-  def month_points(year, month)
-    @tracker = ScoreTracker.new
-    start = Date.new(year, month)
-    (start..start.end_of_month).map do |day|
-      if marks.find_by_marked_on(day)
-        @tracker.mark
-      else
-        @tracker.miss
-      end
+  def month_points(date)
+    @tracker = last_month_tracker(date) || ScoreTracker.new
+    (date.beginning_of_month..date.end_of_month).map do |day|
+      marks.find_by_marked_on(day) ? @tracker.mark : @tracker.miss
     end
+  end
+  
+  # TODO remove duplication
+  def month_tracker(date)
+    @tracker = last_month_tracker(date) || ScoreTracker.new
+    (date.beginning_of_month..date.end_of_month).each do |day|
+      marks.find_by_marked_on(day) ? @tracker.mark : @tracker.miss
+    end
+    @tracker
+  end
+  
+  def last_month_tracker(date)
+    if marks.exists?(["marked_on < ?", date.beginning_of_month])
+      month_tracker(date.beginning_of_month-1.day)
+    end
+  end
+  
+  def day_points(date)
+    month_points(date)[date.day-1]
   end
 end

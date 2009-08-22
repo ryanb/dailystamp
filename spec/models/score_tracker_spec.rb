@@ -27,4 +27,9 @@ describe ScoreTracker do
     2.times { @tracker.miss }
     @tracker.mark.should == 2
   end
+  
+  it "should reset position when mark is after misses" do
+    4.times { @tracker.miss }
+    @tracker.mark.should == 1
+  end
 end

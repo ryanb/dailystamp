@@ -38,7 +38,7 @@
         <% else %>
           <%= link_to "", marks_path(:stamp_id => @stamp, :date => day.to_s("%Y-%m-%d")), :class => "mark_link" %>
         <% end %>
-        <div class="points">2</div>
+        <div class="points"><%= points @stamp.day_points(day) %></div>
         <%= day.day %>
       <% end %>
     <% end %>

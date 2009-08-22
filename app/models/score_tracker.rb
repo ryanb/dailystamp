@@ -29,6 +29,8 @@ class ScoreTracker
     @position += 1
     @score -= @negative_points
     if @score < 0
+      @position = 0
+      @positive_points = 0
       @score = 0
     else
       -@negative_points

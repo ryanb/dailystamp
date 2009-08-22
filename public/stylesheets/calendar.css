@@ -43,3 +43,7 @@
   font-size: 13px;
   color: #000;
 }
+
+#calendar .points .negative {
+  color: #D00;
+}

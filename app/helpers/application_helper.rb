@@ -7,4 +7,14 @@ module ApplicationHelper
     end
     image_tag "mark.png", options
   end
+  
+  def points(num)
+    if num > 0
+      "+#{num}"
+    elsif num.zero?
+      num.to_s
+    else
+      content_tag(:span, num, :class => "negative")
+    end
+  end
 end
