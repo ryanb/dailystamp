@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822031324) do
+ActiveRecord::Schema.define(:version => 20090822040759) do
 
   create_table "marks", :force => true do |t|
     t.integer  "stamp_id"
@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(:version => 20090822031324) do
     t.date     "marked_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position_x"
+    t.integer  "position_y"
   end
 
   create_table "stamps", :force => true do |t|

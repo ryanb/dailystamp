@@ -31,9 +31,9 @@
   <% calendar_for(@stamp.marks) do |calendar| %>
     <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
     <% calendar.day(:day_method => :marked_on) do |day, marks| %>
+      <%= mark_image(marks.first) if marks.first %>
       <%= day.day %>
       <%= link_to "", marks_path(:stamp_id => @stamp, :date => day.to_s("%Y-%m-%d")), :class => "mark_link" %>
-      <%= "marked" if marks.first %>
     <% end %>
   <% end %>
 </div>

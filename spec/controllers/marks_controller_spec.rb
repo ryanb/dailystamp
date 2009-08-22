@@ -5,10 +5,13 @@ describe MarksController do
   integrate_views
   
   it "create action should create mark with given stamp id and date" do
-    post :create, :stamp_id => Stamp.first.id, :date => "2009-02-01"
+    post :create, :stamp_id => Stamp.first.id, :date => "2009-02-01", :x => 123, :y => 456
     response.should redirect_to(root_url)
-    Mark.last.marked_on.should == Date.parse("2009-02-01")
-    Mark.last.stamp_id.should == Stamp.first.id
+    mark = Mark.last
+    mark.marked_on.should == Date.parse("2009-02-01")
+    mark.stamp_id.should == Stamp.first.id
+    mark.position_x.should == 123
+    mark.position_y.should == 456
   end
   
   it "destroy action should destroy model and redirect to index action" do
