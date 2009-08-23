@@ -8,6 +8,10 @@ class StampsController < ApplicationController
   def show
     @stamp = Stamp.find(params[:id])
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    if @stamp.private? && @stamp.user != current_user
+      flash[:error] = "You are not authorized to access that stamp."
+      redirect_to login_url
+    end
   end
   
   def new

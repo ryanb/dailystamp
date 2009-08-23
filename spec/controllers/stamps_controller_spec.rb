@@ -82,3 +82,26 @@ describe StampsController, "as stamp owner" do
     Stamp.exists?(stamp.id).should be_false
   end
 end
+
+
+describe StampsController, "as another user" do
+  fixtures :all
+  integrate_views
+  
+  before(:each) do
+    activate_authlogic
+    UserSession.create(User.last)
+  end
+  
+  it "show action should redirect to login if private" do
+    Stamp.first.update_attribute(:private, true)
+    get :show, :id => Stamp.first
+    response.should redirect_to(login_path)
+  end
+  
+  it "show action should be able to see public stamp" do
+    Stamp.first.update_attribute(:private, false)
+    get :show, :id => Stamp.first
+    response.should render_template(:show)
+  end
+end

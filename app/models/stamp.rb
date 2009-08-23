@@ -9,6 +9,8 @@ class Stamp < ActiveRecord::Base
   attr_accessible :name, :private, :color, :stamp_image_id
   validates_presence_of :name
   
+  named_scope :non_private, :conditions => ["private != ?", true]
+  
   def day_points(date)
     month_points(date.beginning_of_month)[date.day-1]
   end

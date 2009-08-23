@@ -5,39 +5,45 @@
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 <% end %>
 
-<% if current_user %>
-<div id="stamps">
-  <div id="stamp_collection">
-    <% for stamp in current_user.stamps %>
-      <div class="stamp">
-        <% if stamp == @stamp %>
-          <%= image_tag("stamper/current.png", :size => "40x53", :alt => h(stamp.name)) %>
-        <% else %>
-          <%= link_to image_tag("stamper/#{h(stamp.color)}/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="new_stamp">
-      <%= link_to "+", new_stamp_path, :title => "New Stamp" %>
+<div id="<%= stamp_owner? ? "owner" : "other_user" %>">
+  <% if @stamp.user %>
+  <div id="stamps">
+    <div id="stamp_collection">
+      <% for stamp in (stamp_owner? ? current_user.stamps : @stamp.user.stamps.non_private) %>
+        <div class="stamp">
+          <% if stamp == @stamp %>
+            <%= image_tag("stamper/current.png", :size => "40x53", :alt => h(stamp.name)) %>
+          <% else %>
+            <%= link_to image_tag("stamper/#{h(stamp.color)}/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
+          <% end %>
+        </div>
+      <% end %>
+      <% if stamp_owner? %>
+        <div class="new_stamp">
+          <%= link_to "+", new_stamp_path, :title => "New Stamp" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
     </div>
-    <div class="clear"></div>
+    <h2>Stamp Collection</h2>
   </div>
-  <h2>Stamp Collection</h2>
-</div>
-<% end %>
+  <% end %>
 
-<div id="current_stamp">
-  <p id="stamper">
-    <%= link_to image_tag("stamper/#{h(@stamp.color)}/ready.png", :size => "87x114"), "#stamptoday" %>
-    <%= image_tag "stamper/#{h(@stamp.color)}/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
-  </p>
-  <div id="stamp_details">
-    <h1><%=h @stamp.name %></h1>
-    <p><%= link_to "Customize", edit_stamp_path(@stamp) %></p>
-    <p id="score">Score: <span id="score_value"><%=h @stamp.score %></span></p>
+  <div id="current_stamp">
+    <p id="stamper">
+      <%= link_to image_tag("stamper/#{h(@stamp.color)}/ready.png", :size => "87x114"), "#stamptoday" %>
+      <%= image_tag "stamper/#{h(@stamp.color)}/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
+    </p>
+    <div id="stamp_details">
+      <h1><%=h @stamp.name %></h1>
+      <% if stamp_owner? %>
+        <p><%= link_to "Customize", edit_stamp_path(@stamp) %></p>
+      <% end %>
+      <p id="score">Score: <span id="score_value"><%=h @stamp.score %></span></p>
+    </div>
   </div>
-</div>
 
-<div id="calendar">
-  <%= render 'calendar' %>
+  <div id="calendar">
+    <%= render 'calendar' %>
+  </div>
 </div>

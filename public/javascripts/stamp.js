@@ -11,7 +11,7 @@ jQuery.fn.change_image = function(image) {
 };
 
 $(function() {
-  $("#calendar td").live("click", function(event) {
+  $("#owner #calendar td").live("click", function(event) {
     if ($(this).children("a.mark_link").length > 0) {
       if ($(this).children(".mark").length > 0) {
         $.post($(this).children("a.mark_link").attr("href"), { _method: "delete" }, null, "script");
@@ -30,13 +30,13 @@ $(function() {
     return false;
   });
   
-  $("#stamps a").mouseover(function() {
+  $("#owner #stamps a").mouseover(function() {
     $("#stamps h2").text(this.title);
   }).mouseout(function() {
     $("#stamps h2").text("Stamp Collection");
   });
   
-  $("#stamper a").click(function(click_event) {
+  $("#owner #stamper a").click(function(click_event) {
     $("#stamper a img").change_image("ink.png");
     $("#stamp_cursor").change_image("holding.png").show().css({
       left: (click_event.pageX - 40) + 'px',

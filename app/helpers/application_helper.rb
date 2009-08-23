@@ -17,4 +17,8 @@ module ApplicationHelper
       content_tag(:span, num, :class => "negative")
     end
   end
+  
+  def stamp_owner?
+    @stamp && @stamp.user == current_user
+  end
 end
