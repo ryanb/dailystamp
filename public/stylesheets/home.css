@@ -19,10 +19,18 @@ form #stamp_name {
   width: 330px;
 }
 
+#container {
+  width: 715px;
+  max-width: 715px;
+}
+
+#screencast {
+  float: right;
+}
+
 #new_stamp {
   width: 490px;
   max-width: 490px;
-  margin: 0 auto;
 }
 
 #suggestions {
