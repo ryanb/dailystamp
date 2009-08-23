@@ -9,7 +9,7 @@ class StampImagesController < ApplicationController
     @stamp_image = StampImage.new(params[:stamp_image])
     @stamp_image.user = current_user
     if @stamp_image.save
-      @stamp_image.send_later(:generate_graphics)
+      @stamp_image.generate_graphics
       respond_to do |format|
         format.html { redirect_to root_url }
         format.js

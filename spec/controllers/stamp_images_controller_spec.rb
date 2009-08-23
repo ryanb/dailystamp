@@ -34,6 +34,7 @@ describe StampImagesController, "as user" do
   
   it "create action should redirect when model is valid" do
     StampImage.any_instance.stubs(:valid?).returns(true)
+    StampImage.any_instance.expects(:generate_graphics)
     post :create
     response.should redirect_to(root_url)
   end
