@@ -5,7 +5,7 @@ class Mark < ActiveRecord::Base
   after_destroy :reset_score
   
   def image_path
-    stamp && stamp.stamp_image && stamp.stamp_image.photo.url(stamp.color)
+    stamp && stamp.stamp_image && stamp.stamp_image.photo.url(stamp.color).sub(/[^\.]+$/, "png")
   end
   
   private

@@ -18,10 +18,10 @@ describe Mark do
   
   it "image_path should use stamp image" do
     stamp = Stamp.new(:color => "blue")
-    stamp_image = stamp.build_stamp_image(:photo_file_name => "foo.png")
+    stamp_image = stamp.build_stamp_image(:photo_file_name => "foo.jpg")
     mark = stamp.marks.build
     mark.stamp = stamp
-    mark.image_path.should == stamp_image.photo.url("blue")
+    mark.image_path.should == stamp_image.photo.url("blue").sub(/[^\.]+$/, "png")
   end
   
   it "should clear future month cache of stamp when creating" do

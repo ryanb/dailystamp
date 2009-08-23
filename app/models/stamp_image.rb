@@ -28,8 +28,10 @@ class StampImage < ActiveRecord::Base
     colored.new_image(70, 70) { self.background_color = color }
     source.matte = false
     colored.composite!(source.negate, Magick::CenterGravity, Magick::CopyOpacityCompositeOp)
-    File.delete(photo.path(color)) if File.exist? photo.path(color)
-    FileUtils.mkdir_p(File.dirname(photo.path(color))) unless File.exist? File.dirname(photo.path(color))
-    colored.write(photo.path(color))
+    output_dir = File.dirname(photo.path(color))
+    output = File.join(output_dir, (File.basename(photo.path(color), '.*') + '.png'))
+    FileUtils.mkdir_p(output_dir) unless File.exist? output_dir
+    File.delete(output) if File.exist? output
+    colored.write(output)
   end
 end

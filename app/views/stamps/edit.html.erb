@@ -24,7 +24,7 @@
   <div id="stamp_images">
     <% for stamp_image in current_user.stamp_images %>
       <div class="stamp_image" id="stamp_image_<%= stamp_image.id %>">
-        <%= label_tag "stamp_stamp_image_id_#{stamp_image.id}", image_tag(stamp_image.photo.url(@stamp.color), :size => "70x70") %>
+        <%= label_tag "stamp_stamp_image_id_#{stamp_image.id}", image_tag(stamp_image.photo.url(@stamp.color).sub(/[^\.]+$/, "png"), :size => "70x70") %>
         <div class="delete"><%= link_to "delete", stamp_image, :method => :delete, :confirm => "Are you sure?" %></div>
         <div class="radio_button"><%= f.radio_button :stamp_image_id, stamp_image.id %></div>
       </div>
