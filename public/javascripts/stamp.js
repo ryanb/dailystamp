@@ -53,6 +53,9 @@ $(function() {
     }).click(function(event) {
       $("body").unbind("mousemove");
       $("#stamp_cursor").unbind("click").hide();
+      if (!document.elementFromPoint) {
+        alert("Please upgrade your browser to use this feature.");
+      }
       var element = document.elementFromPoint(event.pageX, event.pageY);
       if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
         if (instruction_level == 2) {
