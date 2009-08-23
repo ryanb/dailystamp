@@ -41,6 +41,7 @@ form #stamp_name {
   -webkit-border-radius: 15px;
   border: solid 2px #CCC;
   margin-top: 23px;
+  width: 185px;
 }
 
 #highlights h4 {

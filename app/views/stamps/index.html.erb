@@ -14,7 +14,7 @@
       <div class="stamp">
         <div class="stamper"><%= link_to image_tag("stamper/#{h(stamp.color)}/tiny.png", :size => "23x30", :alt => h(stamp.name)), stamp %></div>
         <div class="stamp_details">
-          <%= link_to h(truncate(stamp.name, :length => 25)), stamp %><br />
+          <%= link_to h(truncate(stamp.name, :length => 20)), stamp %><br />
           <span class="score"><%= stamp.score %> points by <%= h(stamp.user.display_name) if stamp.user %></span>
         </div>
         <div class="clear"></div>
