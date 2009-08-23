@@ -99,3 +99,11 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 .guest_notice {
   font-weight: bold;
 }
+
+#footer {
+  font-size: 12px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #777;
+}
