@@ -16,13 +16,13 @@ describe StampsController do
   
   it "new action should render new template" do
     get :new
-    response.should render_template(:new)
+    response.should render_template(:index)
   end
   
   it "create action should render new template when model is invalid" do
     Stamp.any_instance.stubs(:valid?).returns(false)
     post :create
-    response.should render_template(:new)
+    response.should render_template(:index)
   end
   
   it "create action should redirect when model is valid" do

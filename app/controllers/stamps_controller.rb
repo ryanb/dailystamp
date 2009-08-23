@@ -1,6 +1,6 @@
 class StampsController < ApplicationController
   def index
-    @stamps = Stamp.all
+    @stamp = Stamp.new
   end
   
   def show
@@ -10,6 +10,7 @@ class StampsController < ApplicationController
   
   def new
     @stamp = Stamp.new
+    render :action => "index"
   end
   
   def create
@@ -17,10 +18,9 @@ class StampsController < ApplicationController
     @stamp.stamp_image ||= StampImage.first
     @stamp.user = current_user
     if @stamp.save
-      flash[:notice] = "Successfully created stamp."
       redirect_to @stamp
     else
-      render :action => 'new'
+      render :action => "index"
     end
   end
   
@@ -31,7 +31,6 @@ class StampsController < ApplicationController
   def update
     @stamp = Stamp.find(params[:id])
     if @stamp.update_attributes(params[:stamp])
-      flash[:notice] = "Successfully updated stamp."
       redirect_to @stamp
     else
       render :action => 'edit'
@@ -41,7 +40,6 @@ class StampsController < ApplicationController
   def destroy
     @stamp = Stamp.find(params[:id])
     @stamp.destroy
-    flash[:notice] = "Successfully destroyed stamp."
     redirect_to stamps_url
   end
 end
