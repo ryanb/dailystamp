@@ -1,3 +1,7 @@
+#calendar {
+  clear: both;
+}
+
 #calendar table {
   border-collapse: collapse;
   width: 100%;
@@ -53,14 +57,79 @@
   color: #D00;
 }
 
-#score {
-  font-size: 30px;
-  font-weight: bold;
-  float: right;
-}
-
 #stamp_cursor {
   position: absolute;
   z-index: 1;
   cursor: none;
+}
+
+#stamps {
+  float: right;
+  background-color: #DDD;
+  -moz-border-radius-topleft:15px;
+  -moz-border-radius-topright:15px;
+  -webkit-border-top-left-radius:15px;
+  -webkit-border-top-right-radius:15px;
+}
+
+#stamps h2 {
+  background-color: #999;
+  color: #FFF;
+  text-align: center;
+  margin: 0;
+  padding: 8px;
+  font-size: 14px;
+}
+
+#stamps #stamp_collection {
+  margin: 10px 15px;
+  margin-bottom: 5px;
+}
+
+#stamps .stamp, #stamps .new_stamp {
+  margin-left: 10px;
+  float: left;
+}
+
+#stamps .new_stamp {
+  padding-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#stamps .new_stamp a {
+  color: #333;
+}
+
+#stamps .new_stamp a:hover {
+  color: #D00;
+  text-decoration: none;
+}
+
+#stamper {
+  float: left;
+  margin: 0;
+}
+
+#stamp_details {
+  margin-left: 120px;
+}
+
+h1 {
+  margin: 0;
+  padding-top: 10px;
+}
+
+#score {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+#stamp_details p {
+  margin: 0;
+}
+
+#stamp_details a {
+  font-size: 14px;
 }

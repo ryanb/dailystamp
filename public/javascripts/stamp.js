@@ -28,6 +28,12 @@ $(function() {
     return false;
   });
   
+  $("#stamps a").mouseover(function() {
+    $("#stamps h2").text(this.title);
+  }).mouseout(function() {
+    $("#stamps h2").text("Your Stamps");
+  });
+  
   $("#stamper a").click(function(click_event) {
     $("#stamper a img").attr("src", "/images/stamper/ink.png");
     $("#stamp_cursor").attr("src", "/images/stamper/holding.png").show().css({

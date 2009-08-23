@@ -6,28 +6,37 @@
 <% end %>
 
 <% if current_user %>
-  <h2>Stamps</h2>
-  <ul>
-  <% for stamp in current_user.stamps %>
-    <li><%= link_to_unless_current h(stamp.name), stamp %></li>
-  <% end %>
-    <li><%= link_to "New Stamp", new_stamp_path %></li>
-  </ul>
+<div id="stamps">
+  <div id="stamp_collection">
+    <% for stamp in current_user.stamps %>
+      <div class="stamp">
+        <% if stamp == @stamp %>
+          <%= image_tag("stamper/current.png", :size => "40x53", :alt => h(stamp.name)) %>
+        <% else %>
+          <%= link_to image_tag("stamper/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="new_stamp">
+      <%= link_to "+", new_stamp_path, :title => "New Stamp" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <h2>Your Stamps</h2>
+</div>
 <% end %>
 
-<div id="score">
-  Score: <span id="score_value"><%=h @stamp.score %></span>
+<div id="current_stamp">
+  <p id="stamper">
+    <%= link_to image_tag("stamper/ready.png", :size => "87x114"), "#stamptoday" %>
+    <%= image_tag "stamper/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
+  </p>
+  <div id="stamp_details">
+    <h1><%=h @stamp.name %></h1>
+    <p><%= link_to "Customize", edit_stamp_path(@stamp) %></p>
+    <p id="score">Score: <span id="score_value"><%=h @stamp.score %></span></p>
+  </div>
 </div>
-
-<h1><%=h @stamp.name %></h1>
-<p>
-  <%= link_to "Edit", edit_stamp_path(@stamp) %> |
-  <%= link_to "Destroy", @stamp, :confirm => 'Are you sure?', :method => :delete %>
-</p>
-<p id="stamper">
-  <%= link_to image_tag("stamper/ready.png", :size => "87x114"), "#stamptoday" %>
-  <%= image_tag "stamper/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
-</p>
 
 <div id="calendar">
   <%= render 'calendar' %>
