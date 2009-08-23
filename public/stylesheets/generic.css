@@ -3,3 +3,14 @@ body {
   background-position: top right;
   background-repeat: no-repeat;
 }
+
+#container {
+  width: 600px;
+  max-width: 600px;
+}
+
+form {
+  background-color: #DDD;
+  border: solid 1px #999;
+  padding: 10px 20px;
+}

@@ -1,5 +1,5 @@
 <% title "Customize Stamp" %>
-<% stylesheet "edit_stamp" %>
+<% stylesheet "generic", "edit_stamp" %>
 <% javascript "edit_stamp" %>
 <% content_for :head do %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
@@ -32,7 +32,7 @@
     <% end %>
     <div class="clear"></div>
   </div>
-  <p><%= link_to "Add your own stamp", new_stamp_image_path, :id => "new_stamp_image_link" %></p>
+  <p><strong>Or <%= link_to "add your own stamp", new_stamp_image_path, :id => "new_stamp_image_link" %></strong></p>
   
-  <p><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>
+  <p class="buttons"><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>
 <% end %>
