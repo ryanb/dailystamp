@@ -14,7 +14,7 @@
           <% if stamp == @stamp %>
             <%= image_tag("stamper/current.png", :size => "40x53", :alt => h(stamp.name)) %>
           <% else %>
-            <%= link_to image_tag("stamper/#{h(stamp.color)}/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
+            <%= link_to image_tag("stamper/#{h(stamp.color)}/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(truncate(stamp.name, :length => 20)) %>
           <% end %>
         </div>
       <% end %>

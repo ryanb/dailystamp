@@ -30,7 +30,7 @@ $(function() {
     return false;
   });
   
-  $("#owner #stamps a").mouseover(function() {
+  $("#stamps a").mouseover(function() {
     $("#stamps h2").text(this.title);
   }).mouseout(function() {
     $("#stamps h2").text("Stamp Collection");
