@@ -1,8 +1,8 @@
 <p id="user_info">
   <% if logged_in? %>
     <% if current_user.guest? %>
-      <span class="guest_notice">You are currently logged in as a guest.</span>
-      Please <%= link_to "setup your account", edit_user_path(:current) %> to save your stamps.
+      <span class="guest_notice">You are currently logged in as a guest.</span><br />
+      Please <%= link_to "setup your account", edit_user_path(:current) %> to save your <%= link_to_if(current_user.current_stamp && !current_page?(current_user.current_stamp), "stamps", current_user.current_stamp) %>.
     <% else %>
       Welcome <%=h current_user.username %>!
       <% if current_user.current_stamp && !current_page?(current_user.current_stamp) %>
