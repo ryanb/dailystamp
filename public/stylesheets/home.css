@@ -26,6 +26,7 @@ form #stamp_name {
 
 #screencast {
   float: right;
+  padding-top: 10px;
 }
 
 #new_stamp {

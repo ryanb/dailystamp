@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Stamp do
   describe "month points" do
     before(:each) do
-      @stamp = Stamp.create!
+      @stamp = Factory(:stamp)
       @stamp.marks.create!(:marked_on => "2010-01-01")
     end
     
@@ -62,7 +62,7 @@ describe Stamp do
   end
   
   it "should calculate score and set cache" do
-    stamp = Stamp.create!
+    stamp = Factory(:stamp)
     stamp.marks.create!(:marked_on => "2009-01-01")
     stamp.marks.create!(:marked_on => "2009-01-02")
     stamp.score.should == 3

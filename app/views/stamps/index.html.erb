@@ -11,7 +11,7 @@
 <div id="new_stamp">
   <h2>What do you want to do daily?</h2>
 
-  <% form_for Stamp.new do |f| %>
+  <% form_for @stamp do |f| %>
     <%= f.error_messages %>
     <p><%= f.text_field :name, :size => 30 %> <%= f.submit "Get Started" %></p>
     <p><%= f.check_box :private %> <%= f.label :private, "Keep this private" %></p>

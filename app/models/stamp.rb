@@ -1,11 +1,13 @@
 class Stamp < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
-  attr_accessible :name, :private, :color, :stamp_image_id
   belongs_to :user
   belongs_to :stamp_image
   has_many :marks, :dependent => :destroy
   has_many :month_caches, :dependent => :destroy
+  
+  attr_accessible :name, :private, :color, :stamp_image_id
+  validates_presence_of :name
   
   def day_points(date)
     month_points(date.beginning_of_month)[date.day-1]
