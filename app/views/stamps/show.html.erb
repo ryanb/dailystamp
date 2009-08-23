@@ -13,7 +13,7 @@
         <% if stamp == @stamp %>
           <%= image_tag("stamper/current.png", :size => "40x53", :alt => h(stamp.name)) %>
         <% else %>
-          <%= link_to image_tag("stamper/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
+          <%= link_to image_tag("stamper/#{h(stamp.color)}/small.png", :size => "40x52", :alt => h(stamp.name)), stamp, :title => h(stamp.name) %>
         <% end %>
       </div>
     <% end %>
@@ -28,8 +28,8 @@
 
 <div id="current_stamp">
   <p id="stamper">
-    <%= link_to image_tag("stamper/ready.png", :size => "87x114"), "#stamptoday" %>
-    <%= image_tag "stamper/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
+    <%= link_to image_tag("stamper/#{h(@stamp.color)}/ready.png", :size => "87x114"), "#stamptoday" %>
+    <%= image_tag "stamper/#{h(@stamp.color)}/holding.png", :size => "81x90", :style => "display: none", :id => "stamp_cursor" %>
   </p>
   <div id="stamp_details">
     <h1><%=h @stamp.name %></h1>

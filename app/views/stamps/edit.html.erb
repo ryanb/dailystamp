@@ -6,7 +6,15 @@
   <p><%= f.text_field :name %></p>
   <p><%= f.check_box :private %> <%= f.label :private, "Keep this stamp private" %></p>
   
-  
+  <div id="colors">
+    <% for color in STAMP_COLORS %>
+      <div class="color">
+        <%= label_tag "stamp_color_#{color}", image_tag("stamper/#{color}/ready.png", :size => "87x114", :alt => color) %>
+        <div class="radio_button"><%= f.radio_button :color, color %></div>
+      </div>
+    <% end %>
+    <div class="clear"></div>
+  </div>
   
   <p><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>
 <% end %>

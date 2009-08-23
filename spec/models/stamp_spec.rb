@@ -72,4 +72,8 @@ describe Stamp do
   it "should have zero score if no marks" do
     Stamp.new.score.should be_zero
   end
+  
+  it "should default color to 'red'" do
+    Stamp.new.color.should == "red"
+  end
 end

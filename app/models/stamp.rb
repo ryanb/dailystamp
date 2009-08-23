@@ -1,7 +1,7 @@
 class Stamp < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
-  attr_accessible :name, :private
+  attr_accessible :name, :private, :color
   belongs_to :user
   has_many :marks, :dependent => :destroy
   
@@ -17,6 +17,10 @@ class Stamp < ActiveRecord::Base
   
   def score
     score_cache || calculate_score
+  end
+  
+  def color
+    read_attribute(:color).blank? ? "red" : read_attribute(:color)
   end
   
   private

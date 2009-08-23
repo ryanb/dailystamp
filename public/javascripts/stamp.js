@@ -5,7 +5,10 @@ $(document).ajaxSend(function(event, request, settings) {
   settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
 });
 
-var stamping = false;
+jQuery.fn.change_image = function(image) {
+  this.attr("src", this.attr("src").replace(/[^\/]+$/, image));
+  return this;
+};
 
 $(function() {
   $("#calendar td").live("click", function(event) {
@@ -16,9 +19,8 @@ $(function() {
         var p = $(this).position();
         var x = (event.pageX - p.left);
         var y = (event.pageY - p.top);
-        $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y, skip: !stamping }, null, "script");
+        $.post($(this).children("a.mark_link").attr("href"), { x: x, y: y, skip: true }, null, "script");
       }
-      stamping = false;
     }
     return false;
   });
@@ -35,8 +37,8 @@ $(function() {
   });
   
   $("#stamper a").click(function(click_event) {
-    $("#stamper a img").attr("src", "/images/stamper/ink.png");
-    $("#stamp_cursor").attr("src", "/images/stamper/holding.png").show().css({
+    $("#stamper a img").change_image("ink.png");
+    $("#stamp_cursor").change_image("holding.png").show().css({
       left: (click_event.pageX - 40) + 'px',
       top: (click_event.pageY - 45) + 'px'
     }).click(function(event) {
@@ -44,13 +46,13 @@ $(function() {
       $("#stamp_cursor").unbind("click").hide();
       var element = document.elementFromPoint(event.pageX, event.pageY);
       if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
-        $("#stamp_cursor").attr("src", "/images/stamper/stamping.png").show();
+        $("#stamp_cursor").change_image("stamping.png").show();
         var p = $(element).position();
         var x = (event.pageX - p.left);
         var y = (event.pageY - p.top);
         $.post($(element).children("a.mark_link").attr("href"), { x: x, y: y }, null, "script");
       } else {
-        $("#stamper a img").attr("src", "/images/stamper/ready.png");
+        $("#stamper a img").change_image("ready.png");
       }
     });
     $("body").mousemove(function(event) {
