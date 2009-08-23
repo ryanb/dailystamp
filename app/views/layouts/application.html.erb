@@ -3,7 +3,8 @@
 <html>
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "jquery-1.3.2.min" %>
     <%= yield(:head) %>
   </head>
   <body>
