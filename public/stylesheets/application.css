@@ -23,6 +23,16 @@ a:hover {
   overflow: hidden;
 }
 
+#container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#user_info {
+  text-align: center;
+  margin: 10px 0;
+}
+
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;
