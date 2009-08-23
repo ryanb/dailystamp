@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     StampImage.all(:conditions => ["user_id = ? OR user_id is null", self])
   end
   
+  def display_name
+    username.blank? ? "guest" : username
+  end
+  
   private
   
   def map_openid_registration(registration)
