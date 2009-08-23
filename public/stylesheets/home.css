@@ -41,7 +41,6 @@ form #stamp_name {
   -webkit-border-radius: 15px;
   border: solid 2px #CCC;
   margin-top: 23px;
-  padding-bottom: 15px;
 }
 
 #highlights h4 {
@@ -53,13 +52,12 @@ form #stamp_name {
   color: #999;
   font-weight: normal;
   letter-spacing: 0.2em;
-  border-bottom: solid 1px #BBB;
 }
 
 #highlights .stamp {
   padding: 3px 5px;
   font-size: 12px;
-  border-bottom: solid 1px #BBB;
+  border-top: solid 1px #BBB;
 }
 
 #highlights .stamper {
