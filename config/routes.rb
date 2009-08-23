@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :stamp_images
+
   map.resources :marks
 
   map.resources :stamps

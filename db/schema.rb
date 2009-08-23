@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823022359) do
+ActiveRecord::Schema.define(:version => 20090823033051) do
 
   create_table "marks", :force => true do |t|
     t.integer  "stamp_id"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(:version => 20090823022359) do
     t.datetime "updated_at"
     t.integer  "position_x"
     t.integer  "position_y"
+  end
+
+  create_table "stamp_images", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "generated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stamps", :force => true do |t|

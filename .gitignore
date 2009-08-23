@@ -2,3 +2,4 @@ log/*.log
 tmp/**/*
 *.sqlite3
 database.yml
+public/assets
