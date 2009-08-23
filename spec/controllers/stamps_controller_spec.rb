@@ -95,11 +95,19 @@ describe StampsController, "as stamp owner" do
     response.should redirect_to(stamp_url(assigns[:stamp]))
   end
   
-  it "destroy action should destroy model and redirect to index action" do
-    stamp = Stamp.first
-    delete :destroy, :id => stamp
-    response.should redirect_to(stamps_url)
-    Stamp.exists?(stamp.id).should be_false
+  it "destroy action should destroy model and redirect to next one in list" do
+    @current_user.stamps.delete_all
+    first_stamp = Factory(:stamp, :user => @current_user)
+    second_stamp = Factory(:stamp, :user => @current_user)
+    delete :destroy, :id => first_stamp
+    response.should redirect_to(stamp_url(second_stamp))
+  end
+  
+  it "destroy action should destroy model and redirect to index when no other stamps" do
+    @current_user.stamps.delete_all
+    first_stamp = Factory(:stamp, :user => @current_user)
+    delete :destroy, :id => first_stamp
+    response.should redirect_to(root_url)
   end
 end
 

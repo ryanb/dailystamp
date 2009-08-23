@@ -37,7 +37,10 @@
     <div id="stamp_details">
       <h1><%=h @stamp.name %></h1>
       <% if stamp_owner? %>
-        <p><%= link_to "Customize", edit_stamp_path(@stamp) %></p>
+        <p>
+          <%= link_to "Customize", edit_stamp_path(@stamp) %> |
+          <%= link_to "Delete", @stamp, :method => :delete, :confirm => "Are you sure you want to delete this stamp? This operation cannot be undone." %>
+        </p>
       <% end %>
       <p id="score">Score: <span id="score_value"><%=h @stamp.score %></span></p>
     </div>

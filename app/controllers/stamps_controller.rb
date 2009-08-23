@@ -54,6 +54,6 @@ class StampsController < ApplicationController
   def destroy
     @stamp = current_user.stamps.find(params[:id])
     @stamp.destroy
-    redirect_to stamps_url
+    redirect_to(current_user.stamps.first || root_url)
   end
 end
