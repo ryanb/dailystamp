@@ -40,7 +40,7 @@
 #calendar #month a, #calendar #month a:hover {
   text-decoration: none;
   padding: 0 10px;
-  color: #00F;
+  color: #999;
 }
 
 #calendar .mark {
