@@ -45,6 +45,9 @@
         <p>Stamp by <%=h stamp.user.display_name if stamp.user %></p>
       <% end %>
       <p id="score">Score: <span id="score_value"><%=h @stamp.score %></span></p>
+      <% if stamp_owner? && stamp.score.zero? %>
+        <%= image_tag "instructions/instruction1.gif", :size => "135x59", :id => "instructions" %>
+      <% end %>
     </div>
   </div>
 

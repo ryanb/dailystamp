@@ -10,6 +10,12 @@ jQuery.fn.change_image = function(image) {
   return this;
 };
 
+var instruction_level = 0;
+function next_instructions() {
+  instruction_level++;
+  $("#instructions").attr("src", "/images/instructions/instruction" + instruction_level + ".gif");
+}
+
 $(function() {
   $("#owner #calendar td").live("click", function(event) {
     if ($(this).children("a.mark_link").length > 0) {
@@ -37,6 +43,9 @@ $(function() {
   });
   
   $("#owner #stamper a").click(function(click_event) {
+    if (instruction_level == 1) {
+      next_instructions();
+    }
     $("#stamper a img").change_image("ink.png");
     $("#stamp_cursor").change_image("holding.png").show().css({
       left: (click_event.pageX - 40) + 'px',
@@ -46,6 +55,9 @@ $(function() {
       $("#stamp_cursor").unbind("click").hide();
       var element = document.elementFromPoint(event.pageX, event.pageY);
       if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
+        if (instruction_level == 2) {
+          next_instructions();
+        }
         $("#stamp_cursor").change_image("stamping.png").show();
         var p = $(element).position();
         var x = (event.pageX - p.left);
@@ -63,4 +75,9 @@ $(function() {
     });
     return false;
   });
+  
+  if ($("#instructions").length > 0) {
+    $("#score").hide();
+    instruction_level = 1;
+  }
 });
