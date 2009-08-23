@@ -40,23 +40,3 @@ body {
   font-size: 10px;
   margin-top: 5px;
 }
-
-#modal_overlay {
-	position: fixed;
-	z-index: 100;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background: #000;
-	display: none;
-}
-
-#modal_window {
-  position: fixed;
-  z-index: 102;
-  display: none;
-  top: 50%;
-  left: 50%;
-  background-color: #FFF;
-}
