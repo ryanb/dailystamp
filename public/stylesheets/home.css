@@ -1,7 +1,11 @@
 #logo {
   display: block;
-  margin: 40px auto;
-  margin-bottom: 60px;
+  margin: 40px 0;
+  margin-bottom: 50px;
+}
+
+#user_info {
+  margin-right: 80px;
 }
 
 h2 {
@@ -20,13 +24,56 @@ form #stamp_name {
 }
 
 #container {
-  width: 715px;
-  max-width: 715px;
+  width: 670px;
+  max-width: 670px;
 }
 
-#screencast {
+#side {
   float: right;
   padding-top: 10px;
+}
+
+#highlights {
+  background-color: #EEE;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border: solid 2px #CCC;
+  margin-top: 23px;
+  padding-bottom: 15px;
+}
+
+#highlights h4 {
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  color: #999;
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  border-bottom: solid 1px #999;
+}
+
+#highlights .stamp {
+  padding: 3px 5px;
+  font-size: 12px;
+  border-bottom: solid 1px #999;
+}
+
+#highlights .stamper {
+  float: left;
+  padding-left: 5px;
+  padding-top: 3px;
+}
+
+#highlights .stamp_details {
+  margin-left: 35px;
+  padding-top: 3px;
+}
+
+#highlights .score {
+  font-size: 10px;
+  color: #777;
 }
 
 #new_stamp {

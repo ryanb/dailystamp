@@ -4,8 +4,23 @@
 
 <%= image_tag("dailystamp_big.gif", :size => "599x157", :alt => "Daily Stamp", :id => "logo") %>
 
-<div id="screencast">
-  <a href="http://media.railscasts.com/videos/dailystamp.mov"><%= image_tag("screencast.jpg", :size => "221x294") %></a>
+<div id="side">
+  <div id="screencast">
+    <a href="http://media.railscasts.com/videos/dailystamp.mov"><%= image_tag("screencast.jpg", :size => "185x238") %></a>
+  </div>
+  <div id="highlights">
+    <h4>highlights</h4>
+    <% for stamp in Stamp.non_private.highlights.all(:include => :user) %>
+      <div class="stamp">
+        <div class="stamper"><%= link_to image_tag("stamper/#{h(stamp.color)}/tiny.png", :size => "23x30", :alt => h(stamp.name)), stamp %></div>
+        <div class="stamp_details">
+          <%= link_to h(truncate(stamp.name, :length => 25)), stamp %><br />
+          <span class="score"><%= stamp.score %> points by <%=h stamp.user.username %></span>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div id="new_stamp">
