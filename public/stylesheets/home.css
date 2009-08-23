@@ -15,17 +15,19 @@ h2 {
   margin-bottom: 10px;
 }
 
-form input {
-  font-size: 20px;
+form {
+  margin: 0;
+  padding: 0;
 }
 
 form #stamp_name {
+  font-size: 20px;
   width: 330px;
 }
 
 #container {
-  width: 670px;
-  max-width: 670px;
+  width: 680px;
+  max-width: 680px;
 }
 
 #side {
@@ -76,9 +78,9 @@ form #stamp_name {
   color: #777;
 }
 
-#new_stamp {
-  width: 490px;
-  max-width: 490px;
+#main {
+  width: 480px;
+  max-width: 480px;
 }
 
 #suggestions {
