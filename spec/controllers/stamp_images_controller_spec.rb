@@ -27,4 +27,9 @@ describe StampImagesController do
     get :new
     response.should render_template(:new)
   end
+  
+  it "new action should render new template with js format" do
+    get :new, :format => "js"
+    response.should render_template(:new)
+  end
 end

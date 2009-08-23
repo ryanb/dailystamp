@@ -5,7 +5,10 @@ class StampImagesController < ApplicationController
     if @stamp_image.save
       flash[:notice] = "Successfully created stamp image."
       @stamp_image.send_later(:generate_graphics)
-      redirect_to root_url
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.js
+      end
     else
       render :action => 'new'
     end

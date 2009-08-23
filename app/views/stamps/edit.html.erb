@@ -27,6 +27,7 @@
     <% end %>
     <div class="clear"></div>
   </div>
+  <p><%= link_to "Add your own stamp", new_stamp_image_path, :id => "new_stamp_image_link" %></p>
   <% end %>
   
   <p><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>

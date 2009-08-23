@@ -1,7 +1,3 @@
 <% title "New Stamp Image" %>
 
-<% form_for @stamp_image, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
-  <p><%= f.file_field :photo %></p>
-  <p><%= f.submit "Upload" %></p>
-<% end %>
+<%= render 'form' %>
