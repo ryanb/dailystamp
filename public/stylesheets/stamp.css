@@ -37,9 +37,10 @@
   text-align: center;
 }
 
-#calendar #month a {
+#calendar #month a, #calendar #month a:hover {
   text-decoration: none;
   padding: 0 10px;
+  color: #00F;
 }
 
 #calendar .mark {
@@ -55,6 +56,10 @@
 
 #calendar .points .negative {
   color: #D00;
+}
+
+#calendar .today {
+  background-color: #FFF6DB;
 }
 
 #stamp_cursor {
