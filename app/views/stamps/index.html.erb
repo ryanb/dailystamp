@@ -13,6 +13,7 @@
 
   <% form_for @stamp do |f| %>
     <%= f.error_messages %>
+    <%= f.hidden_field :color %>
     <p><%= f.text_field :name, :size => 30 %> <%= f.submit "Get Started" %></p>
     <p><%= f.check_box :private %> <%= f.label :private, "Keep this private" %></p>
   <% end %>

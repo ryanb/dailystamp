@@ -1,5 +1,5 @@
 class StampsController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update, :destroy]
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy]
   
   def index
     if current_user && current_user.current_stamp
@@ -23,6 +23,7 @@ class StampsController < ApplicationController
   
   def new
     @stamp = Stamp.new
+    @stamp.color = current_user.unused_color
     render :action => "index"
   end
   

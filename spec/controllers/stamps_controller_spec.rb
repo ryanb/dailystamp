@@ -14,9 +14,9 @@ describe StampsController, "as guest" do
     response.should render_template(:show)
   end
   
-  it "new action should render new template" do
+  it "new action should redirect to login" do
     get :new
-    response.should render_template(:index)
+    response.should redirect_to(login_path)
   end
   
   it "create action should render new template when model is invalid" do
@@ -64,6 +64,11 @@ describe StampsController, "as stamp owner" do
     @current_user.save
     get :index
     response.should redirect_to(stamp_url(Stamp.first))
+  end
+  
+  it "new action should render new template" do
+    get :new
+    response.should render_template(:index)
   end
   
   it "show action should render template even if private" do
