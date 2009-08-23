@@ -9,6 +9,7 @@
   <% form_for Stamp.new do |f| %>
     <%= f.error_messages %>
     <p><%= f.text_field :name, :size => 30 %> <%= f.submit "Get Started" %></p>
+    <p><%= f.check_box :private %> <%= f.label :private, "Keep this stamp private" %></p>
   <% end %>
 
   <div id="suggestions">
