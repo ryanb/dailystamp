@@ -1,8 +1,12 @@
-<% title "Edit Stamp" %>
+<% title "Customize Stamp" %>
+<% stylesheet "edit_stamp" %>
 
-<%= render :partial => 'form' %>
-
-<p>
-  <%= link_to "Show", @stamp %> |
-  <%= link_to "View All", stamps_path %>
-</p>
+<% form_for @stamp do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.check_box :private %> <%= f.label :private, "Keep this stamp private" %></p>
+  
+  
+  
+  <p><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>
+<% end %>
