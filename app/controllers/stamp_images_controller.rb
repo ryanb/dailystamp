@@ -4,6 +4,7 @@ class StampImagesController < ApplicationController
     @stamp_image.user = current_user
     if @stamp_image.save
       flash[:notice] = "Successfully created stamp image."
+      @stamp_image.send_later(:generate_graphics)
       redirect_to root_url
     else
       render :action => 'new'
