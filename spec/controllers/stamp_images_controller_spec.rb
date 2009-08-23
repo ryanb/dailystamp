@@ -23,6 +23,13 @@ describe StampImagesController do
     StampImage.exists?(stamp_image.id).should be_false
   end
   
+  it "destroy action should destroy model and render js template" do
+    stamp_image = StampImage.first
+    delete :destroy, :id => stamp_image, :format => "js"
+    response.should render_template(:destroy)
+    StampImage.exists?(stamp_image.id).should be_false
+  end
+  
   it "new action should render new template" do
     get :new
     response.should render_template(:new)

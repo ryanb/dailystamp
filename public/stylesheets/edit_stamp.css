@@ -29,6 +29,12 @@
   text-align: center;
 }
 
+#stamp_images .delete {
+  text-align: center;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
 #modal_overlay {
 	position: fixed;
 	z-index: 100;

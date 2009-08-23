@@ -17,8 +17,10 @@ class StampImagesController < ApplicationController
   def destroy
     @stamp_image = StampImage.find(params[:id])
     @stamp_image.destroy
-    flash[:notice] = "Successfully destroyed stamp image."
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
   
   def new

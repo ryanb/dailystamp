@@ -37,7 +37,7 @@ class Stamp < ActiveRecord::Base
   memoize :marks_in_month
   
   def month_tracker(date)
-    tracker = MonthCache.tracker_for(self, date) || last_month_tracker(date) || ScoreTracker.new
+    tracker = last_month_tracker(date) || ScoreTracker.new
     track_month_points(tracker, date)
     MonthCache.save_tracker(tracker, self, date)
     tracker
@@ -60,8 +60,9 @@ class Stamp < ActiveRecord::Base
   end
   
   def last_month_tracker(date)
-    if marks.exists?(["marked_on < ?", date.beginning_of_month])
-      month_tracker(date.beginning_of_month-1.day)
+    last_month = date.beginning_of_month-1.day
+    if marks.exists?(["marked_on <= ?", last_month])
+      MonthCache.tracker_for(self, last_month) || month_tracker(last_month)
     end
   end
   

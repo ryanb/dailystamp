@@ -2,7 +2,7 @@ class StampImage < ActiveRecord::Base
   attr_accessible :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at
   
   belongs_to :user
-  has_many :stamps
+  has_many :stamps, :dependent => :nullify
   
   has_attached_file :photo, :url  => "/assets/stamp_images/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/stamp_images/:id/:style/:basename.:extension"
