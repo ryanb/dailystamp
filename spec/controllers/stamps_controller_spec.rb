@@ -55,7 +55,22 @@ describe StampsController, "as stamp owner" do
   
   before(:each) do
     activate_authlogic
+    @current_user = Stamp.first.user
     UserSession.create(Stamp.first.user)
+  end
+  
+  it "index action should redirect to current stamp" do
+    @current_user.current_stamp_id = Stamp.first.id
+    @current_user.save
+    get :index
+    response.should redirect_to(stamp_url(Stamp.first))
+  end
+  
+  it "show action should render template even if private" do
+    Stamp.first.update_attribute(:private, true)
+    get :show, :id => Stamp.first
+    response.should render_template(:show)
+    Stamp.first.user.reload.current_stamp.should == Stamp.first
   end
   
   it "edit action should render edit template" do
@@ -103,5 +118,6 @@ describe StampsController, "as another user" do
     Stamp.first.update_attribute(:private, false)
     get :show, :id => Stamp.first
     response.should render_template(:show)
+    User.last.reload.current_stamp.should_not == Stamp.first
   end
 end
