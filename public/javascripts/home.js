@@ -3,7 +3,7 @@ var current_suggestion = 1;
 $(function() {
   $("#suggestions .more").click(function() {
     $("#suggestions_" + current_suggestion).slideUp("normal", function() {
-      if (current_suggestion == 3) {
+      if (current_suggestion == 4) {
         current_suggestion = 1
       } else {
         current_suggestion++;
