@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
  
-describe UsersController do
+describe UsersController, "as a guest" do
   fixtures :all
   integrate_views
   
@@ -19,5 +19,42 @@ describe UsersController do
     User.any_instance.stubs(:valid?).returns(true)
     post :create
     response.should redirect_to(root_url)
+  end
+  
+  it "edit action should redirect to login" do
+    get :edit, :id => "current"
+    response.should redirect_to(login_url)
+  end
+  
+  it "update action should redirect to login" do
+    put :update, :id => "current"
+    response.should redirect_to(login_url)
+  end
+end
+
+describe UsersController, "as a user" do
+  fixtures :all
+  integrate_views
+  
+  before(:each) do
+    activate_authlogic
+    UserSession.create(User.first)
+  end
+  
+  it "edit action should render edit template" do
+    get :edit, :id => "current"
+    response.should render_template(:edit)
+  end
+  
+  it "update action should render edit template when model is invalid" do
+    User.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => "current"
+    response.should render_template(:edit)
+  end
+  
+  it "create action should redirect when model is valid" do
+    User.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => "current"
+    response.should render_template(:edit)
   end
 end

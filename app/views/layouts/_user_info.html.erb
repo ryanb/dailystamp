@@ -6,9 +6,10 @@
     <% else %>
       Welcome <%=h current_user.username %>!
       <% if current_user.current_stamp && !current_page?(current_user.current_stamp) %>
-        <%= link_to "Go to your stamps", current_user.current_stamp %> or
+        <%= link_to "Your Stamps", current_user.current_stamp %> |
       <% end %>
-      <%= link_to "log out", logout_path %>.
+      <%= link_to "Update Profile", edit_user_path(:current) %> |
+      <%= link_to "Log out", logout_path %>.
     <% end %>
   <% else %>
     Already have an account? Then

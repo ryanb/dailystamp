@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :only => [:edit, :update]
+  
   def new
     @user = User.new
   end
@@ -15,16 +17,21 @@ class UsersController < ApplicationController
     end
   end
   
-  # def update
-  #   @user = current_user
-  #   @user.attributes = params[:user]
-  #   @user.save do |result|
-  #     if result
-  #       flash[:notice] = "Successfully updated profile."
-  #       redirect_to root_url
-  #     else
-  #       render :action => 'edit'
-  #     end
-  #   end
-  # end
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    @user.attributes = params[:user]
+    @user.guest = false
+    @user.save do |result|
+      if result
+        flash[:notice] = "Successfully updated profile."
+        redirect_to root_url
+      else
+        render :action => 'edit'
+      end
+    end
+  end
 end
