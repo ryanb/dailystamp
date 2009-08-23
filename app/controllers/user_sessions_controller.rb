@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
-    @user_session = UserSession.new
+    @user_session = UserSession.new(:remember_me => true)
   end
   
   def create
