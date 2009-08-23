@@ -1,10 +1,15 @@
 <p id="user_info">
   <% if logged_in? %>
-    Welcome <%=h current_user.username %>!
-    <% if current_user.current_stamp && !current_page?(current_user.current_stamp) %>
-      <%= link_to "Go to your stamps", current_user.current_stamp %> or
+    <% if current_user.guest? %>
+      <span class="guest_notice">You are currently logged in as a guest.</span>
+      Please <%= link_to "setup your account", edit_user_path(:current) %> to save your stamps.
+    <% else %>
+      Welcome <%=h current_user.username %>!
+      <% if current_user.current_stamp && !current_page?(current_user.current_stamp) %>
+        <%= link_to "Go to your stamps", current_user.current_stamp %> or
+      <% end %>
+      <%= link_to "log out", logout_path %>.
     <% end %>
-    <%= link_to "log out", logout_path %>.
   <% else %>
     Already have an account? Then
     <%= link_to "log in", login_path %>.

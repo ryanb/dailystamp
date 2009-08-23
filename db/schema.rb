@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823182059) do
+ActiveRecord::Schema.define(:version => 20090823183047) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20090823182059) do
     t.datetime "updated_at"
     t.integer  "current_stamp_id"
     t.string   "openid_identifier"
+    t.boolean  "guest",             :default => false, :null => false
   end
 
 end

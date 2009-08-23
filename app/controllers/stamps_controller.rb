@@ -30,7 +30,7 @@ class StampsController < ApplicationController
   def create
     @stamp = Stamp.new(params[:stamp])
     @stamp.stamp_image ||= StampImage.first
-    @stamp.user = current_user
+    @stamp.user = current_user_or_guest
     if @stamp.save
       redirect_to @stamp
     else

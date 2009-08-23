@@ -31,6 +31,7 @@ a:hover {
 #user_info {
   text-align: center;
   margin: 10px 0;
+  margin-bottom: 20px;
 }
 
 #flash_notice, #flash_error {
@@ -93,4 +94,8 @@ input#user_openid_identifier, input#user_session_openid_identifier {
   background-position: 0 50%;
   color: #000;
   padding-left: 18px;
+}
+
+.guest_notice {
+  font-weight: bold;
 }

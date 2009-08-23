@@ -25,10 +25,11 @@ describe StampsController, "as guest" do
     response.should render_template(:index)
   end
   
-  it "create action should redirect when model is valid" do
+  it "create action should redirect when model is valid and create guest user" do
     Stamp.any_instance.stubs(:valid?).returns(true)
     post :create
     response.should redirect_to(stamp_url(assigns[:stamp]))
+    assigns[:stamp].user.should_not be_nil
   end
   
   it "edit action should redirect to login" do
