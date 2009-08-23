@@ -23,7 +23,8 @@ describe StampImagesController, "as user" do
   
   before(:each) do
     activate_authlogic
-    UserSession.create(User.first)
+    @current_user = User.first
+    UserSession.create(@current_user)
   end
   
   it "create action should render new template when model is invalid" do
@@ -32,11 +33,13 @@ describe StampImagesController, "as user" do
     response.should render_template(:new)
   end
   
-  it "create action should redirect when model is valid" do
+  it "create action should redirect to current stamp edit form" do
+    @current_user.current_stamp = Stamp.first
+    @current_user.save!
     StampImage.any_instance.stubs(:valid?).returns(true)
     StampImage.any_instance.expects(:generate_graphics)
     post :create
-    response.should redirect_to(root_url)
+    response.should redirect_to(edit_stamp_path(Stamp.first))
   end
   
   it "destroy action should destroy model and redirect to index action" do

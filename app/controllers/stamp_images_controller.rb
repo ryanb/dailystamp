@@ -11,7 +11,7 @@ class StampImagesController < ApplicationController
     if @stamp_image.save
       @stamp_image.generate_graphics
       respond_to do |format|
-        format.html { redirect_to root_url }
+        format.html { redirect_to((current_user && edit_stamp_path(current_user.current_stamp)) || root_url) }
         format.js
       end
     else
