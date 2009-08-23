@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823043842) do
+ActiveRecord::Schema.define(:version => 20090823070608) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(:version => 20090823043842) do
     t.datetime "updated_at"
     t.integer  "position_x"
     t.integer  "position_y"
+  end
+
+  create_table "month_caches", :force => true do |t|
+    t.integer  "stamp_id"
+    t.integer  "positive_points"
+    t.integer  "negative_points"
+    t.integer  "position"
+    t.integer  "score"
+    t.date     "for_month"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stamp_images", :force => true do |t|

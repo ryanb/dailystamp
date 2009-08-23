@@ -23,4 +23,13 @@ describe Mark do
     mark.stamp = stamp
     mark.image_path.should == stamp_image.photo.url("blue")
   end
+  
+  it "should clear future month cache of stamp when creating" do
+    stamp = Stamp.create!
+    cache1 = stamp.month_caches.create!(:for_month => 2.months.ago)
+    cache2 = stamp.month_caches.create!(:for_month => Date.today.beginning_of_month)
+    stamp.marks.create!(:marked_on => Date.today)
+    MonthCache.exists?(cache1).should be_true
+    MonthCache.exists?(cache2).should be_false
+  end
 end

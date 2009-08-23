@@ -1,11 +1,11 @@
 class ScoreTracker
-  attr_reader :score
+  attr_reader :score, :position, :positive_points, :negative_points
   
-  def initialize
-    @score = 0
-    @positive_points = 0
-    @negative_points = 0
-    @position = 0
+  def initialize(options = {})
+    @score = options[:score] || 0
+    @positive_points = options[:positive_points] || 0
+    @negative_points = options[:negative_points] || 0
+    @position = options[:position] || 0
   end
   
   def mark

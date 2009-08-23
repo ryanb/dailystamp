@@ -11,6 +11,9 @@ class Mark < ActiveRecord::Base
   private
   
   def reset_score
-    stamp.update_attribute(:score_cache, nil) if stamp
+    if stamp
+      stamp.update_attribute(:score_cache, nil)
+      MonthCache.delete_all(["for_month >= ? and stamp_id=?", marked_on.beginning_of_month, stamp.id])
+    end
   end
 end

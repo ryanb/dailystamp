@@ -1,0 +1,15 @@
+one:
+  stamp_id: 1
+  positive_points: 1
+  negative_points: 1
+  position: 1
+  score: 1
+  for_month: 2009-08-23
+
+two:
+  stamp_id: 1
+  positive_points: 1
+  negative_points: 1
+  position: 1
+  score: 1
+  for_month: 2009-08-23

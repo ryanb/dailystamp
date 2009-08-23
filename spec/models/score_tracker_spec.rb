@@ -46,4 +46,9 @@ describe ScoreTracker do
   it "skip should continue on as if nothing happened" do
     [@tracker.mark, @tracker.skip, @tracker.skip, @tracker.mark].should == [1, 0, 0, 2]
   end
+  
+  it "should prefix options with those passed" do
+    tracker = ScoreTracker.new(:score => 123)
+    tracker.score.should == 123
+  end
 end

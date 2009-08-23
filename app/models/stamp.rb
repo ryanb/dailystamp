@@ -5,6 +5,7 @@ class Stamp < ActiveRecord::Base
   belongs_to :user
   belongs_to :stamp_image
   has_many :marks, :dependent => :destroy
+  has_many :month_caches, :dependent => :destroy
   
   def day_points(date)
     month_points(date.beginning_of_month)[date.day-1]
@@ -35,10 +36,10 @@ class Stamp < ActiveRecord::Base
   end
   memoize :marks_in_month
   
-  # TODO remove duplication
   def month_tracker(date)
-    tracker = last_month_tracker(date) || ScoreTracker.new
+    tracker = MonthCache.tracker_for(self, date) || last_month_tracker(date) || ScoreTracker.new
     track_month_points(tracker, date)
+    MonthCache.save_tracker(tracker, self, date)
     tracker
   end
   
