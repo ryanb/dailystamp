@@ -9,8 +9,6 @@ class StampImage < ActiveRecord::Base
   validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 3.megabytes
   
-  validates_presence_of :user_id
-  
   def generate_graphics
     STAMP_COLORS.each do |color|
       generate_graphic_for_color(color)

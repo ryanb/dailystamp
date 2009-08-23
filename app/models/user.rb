@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def unused_color
     (STAMP_COLORS - stamps.map(&:color)).first
   end
+  
+  def available_stamp_images
+    StampImage.all(:conditions => ["user_id = ? OR user_id is null", self])
+  end
 end
