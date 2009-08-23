@@ -15,3 +15,16 @@
 #colors .radio_button {
   text-align: center;
 }
+
+#stamp_images {
+  margin: 20px 0;
+}
+
+#stamp_images .stamp_image {
+  float: left;
+  margin-right: 10px;
+}
+
+#stamp_images .radio_button {
+  text-align: center;
+}

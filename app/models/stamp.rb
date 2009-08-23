@@ -1,7 +1,7 @@
 class Stamp < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   
-  attr_accessible :name, :private, :color
+  attr_accessible :name, :private, :color, :stamp_image_id
   belongs_to :user
   belongs_to :stamp_image
   has_many :marks, :dependent => :destroy
