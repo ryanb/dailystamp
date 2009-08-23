@@ -5,11 +5,26 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "Thank you for signing up! You are now logged in."
-      redirect_to root_url
-    else
-      render :action => 'new'
+    @user.save do |result|
+      if result
+        flash[:notice] = "Thank you for signing up! You are now logged in."
+        redirect_to root_url
+      else
+        render :action => 'new'
+      end
     end
   end
+  
+  # def update
+  #   @user = current_user
+  #   @user.attributes = params[:user]
+  #   @user.save do |result|
+  #     if result
+  #       flash[:notice] = "Successfully updated profile."
+  #       redirect_to root_url
+  #     else
+  #       render :action => 'edit'
+  #     end
+  #   end
+  # end
 end

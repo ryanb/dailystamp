@@ -5,10 +5,12 @@ class UserSessionsController < ApplicationController
   
   def create
     @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-      redirect_to_target_or_default(root_url)
-    else
-      render :action => 'new'
+    @user_session.save do |result|
+      if result
+        redirect_to_target_or_default(root_url)
+      else
+        render :action => 'new'
+      end
     end
   end
   

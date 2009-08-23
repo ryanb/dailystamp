@@ -12,13 +12,22 @@
     <%= f.label :email, "Email Address" %><br />
     <%= f.text_field :email %>
   </p>
+  <% if @user.openid_identifier.blank? %>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation, "Confirm Password" %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p><%= f.submit "Sign Up" %></p>
+    
+    <h2>Or use OpenID</h2>
+  <% end %>
   <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.label :openid_identifier, "OpenID URL" %><br />
+    <%= f.text_field :openid_identifier %>
   </p>
-  <p>
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit "Sign up" %></p>
+  <p><%= f.submit "Sign Up" %></p>
 <% end %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823171102) do
+ActiveRecord::Schema.define(:version => 20090823182059) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -45,6 +45,21 @@ ActiveRecord::Schema.define(:version => 20090823171102) do
     t.datetime "updated_at"
   end
 
+  create_table "open_id_authentication_associations", :force => true do |t|
+    t.integer "issued"
+    t.integer "lifetime"
+    t.string  "handle"
+    t.string  "assoc_type"
+    t.binary  "server_url"
+    t.binary  "secret"
+  end
+
+  create_table "open_id_authentication_nonces", :force => true do |t|
+    t.integer "timestamp",  :null => false
+    t.string  "server_url"
+    t.string  "salt",       :null => false
+  end
+
   create_table "stamp_images", :force => true do |t|
     t.integer  "user_id"
     t.datetime "generated_at"
@@ -76,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090823171102) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "current_stamp_id"
+    t.string   "openid_identifier"
   end
 
 end

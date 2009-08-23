@@ -22,7 +22,9 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "paperclip"
   config.gem "rmagick"
-
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
+  config.gem "ruby-openid", :lib => "openid"
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
