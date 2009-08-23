@@ -4,6 +4,10 @@ class Mark < ActiveRecord::Base
   after_save :reset_score
   after_destroy :reset_score
   
+  def image_path
+    stamp && stamp.stamp_image && stamp.stamp_image.photo.url(stamp.color)
+  end
+  
   private
   
   def reset_score

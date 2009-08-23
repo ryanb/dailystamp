@@ -3,6 +3,7 @@ class Stamp < ActiveRecord::Base
   
   attr_accessible :name, :private, :color
   belongs_to :user
+  belongs_to :stamp_image
   has_many :marks, :dependent => :destroy
   
   def day_points(date)
