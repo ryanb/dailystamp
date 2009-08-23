@@ -1,4 +1,10 @@
 class StampImagesController < ApplicationController
+  before_filter :login_required
+  
+  def new
+    @stamp_image = StampImage.new
+  end
+  
   def create
     @stamp_image = StampImage.new(params[:stamp_image])
     @stamp_image.user = current_user
@@ -15,15 +21,11 @@ class StampImagesController < ApplicationController
   end
   
   def destroy
-    @stamp_image = StampImage.find(params[:id])
+    @stamp_image = current_user.stamp_images.find(params[:id])
     @stamp_image.destroy
     respond_to do |format|
       format.html { redirect_to root_url }
       format.js
     end
-  end
-  
-  def new
-    @stamp_image = StampImage.new
   end
 end

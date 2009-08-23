@@ -18,6 +18,6 @@ describe UserSessionsController do
   it "create action should redirect when authentication is valid" do
     post :create, :user_session => { :username => "foo", :password => "secret" }
     response.should redirect_to(root_url)
-    UserSession.find.user.should == users(:foo)
+    UserSession.find.user.should == users(:one)
   end
 end

@@ -1,5 +1,5 @@
 one:
-  user_id: 1
+  user: one
 
 two:
-  user_id: 1
+  user: two

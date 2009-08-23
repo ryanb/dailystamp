@@ -1,9 +1,9 @@
 one:
-  user_id: 1
+  user: one
   name: MyString
   private: false
 
 two:
-  user_id: 1
+  user: two
   name: MyString
   private: false

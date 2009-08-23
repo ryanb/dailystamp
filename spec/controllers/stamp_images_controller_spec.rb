@@ -1,8 +1,30 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+
+describe StampImagesController, "as guest" do
+  it "create action should redirect to login" do
+    post :create
+    response.should redirect_to(login_path)
+  end
+  
+  it "destroy action should redirect to login" do
+    delete :destroy, :id => StampImage.first, :format => "js"
+    response.should redirect_to(login_path)
+  end
+  
+  it "new action should redirect to login" do
+    get :new
+    response.should redirect_to(login_path)
+  end
+end
  
-describe StampImagesController do
+describe StampImagesController, "as user" do
   fixtures :all
   integrate_views
+  
+  before(:each) do
+    activate_authlogic
+    UserSession.create(User.first)
+  end
   
   it "create action should render new template when model is invalid" do
     StampImage.any_instance.stubs(:valid?).returns(false)
@@ -18,14 +40,14 @@ describe StampImagesController do
   
   it "destroy action should destroy model and redirect to index action" do
     stamp_image = StampImage.first
-    delete :destroy, :id => stamp_image
+    delete :destroy, :id => stamp_image.id
     response.should redirect_to(root_url)
     StampImage.exists?(stamp_image.id).should be_false
   end
   
   it "destroy action should destroy model and render js template" do
     stamp_image = StampImage.first
-    delete :destroy, :id => stamp_image, :format => "js"
+    delete :destroy, :id => stamp_image.id, :format => "js"
     response.should render_template(:destroy)
     StampImage.exists?(stamp_image.id).should be_false
   end

@@ -1,6 +1,8 @@
 class MarksController < ApplicationController
+  before_filter :login_required
+  
   def create
-    @stamp = Stamp.find(params[:stamp_id])
+    @stamp = current_user.stamps.find(params[:stamp_id])
     @mark = @stamp.marks.create!(:marked_on => params[:date], :position_x => params[:x], :position_y => params[:y], :skip => (params[:skip] == "true"))
     respond_to do |format|
       format.html { redirect_to root_url }
@@ -9,7 +11,7 @@ class MarksController < ApplicationController
   end
   
   def destroy
-    @mark = Mark.find(params[:id])
+    @mark = current_user.marks.find(params[:id])
     @mark.destroy
     respond_to do |format|
       format.html { redirect_to root_url }

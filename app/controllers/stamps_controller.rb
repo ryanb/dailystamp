@@ -1,4 +1,6 @@
 class StampsController < ApplicationController
+  before_filter :login_required, :only => [:edit, :update, :destroy]
+  
   def index
     @stamp = Stamp.new
   end
@@ -25,11 +27,11 @@ class StampsController < ApplicationController
   end
   
   def edit
-    @stamp = Stamp.find(params[:id])
+    @stamp = current_user.stamps.find(params[:id])
   end
   
   def update
-    @stamp = Stamp.find(params[:id])
+    @stamp = current_user.stamps.find(params[:id])
     if @stamp.update_attributes(params[:stamp])
       redirect_to @stamp
     else
@@ -38,7 +40,7 @@ class StampsController < ApplicationController
   end
   
   def destroy
-    @stamp = Stamp.find(params[:id])
+    @stamp = current_user.stamps.find(params[:id])
     @stamp.destroy
     redirect_to stamps_url
   end

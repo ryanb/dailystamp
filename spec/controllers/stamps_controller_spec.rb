@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
  
-describe StampsController do
+describe StampsController, "as guest" do
   fixtures :all
   integrate_views
   
@@ -29,6 +29,33 @@ describe StampsController do
     Stamp.any_instance.stubs(:valid?).returns(true)
     post :create
     response.should redirect_to(stamp_url(assigns[:stamp]))
+  end
+  
+  it "edit action should redirect to login" do
+    get :edit, :id => Stamp.first
+    response.should redirect_to(login_path)
+  end
+  
+  it "update action should redirect to login" do
+    Stamp.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => Stamp.first
+    response.should redirect_to(login_path)
+  end
+  
+  it "destroy action should redirect to login" do
+    delete :destroy, :id => Stamp.first
+    response.should redirect_to(login_path)
+  end
+end
+
+
+describe StampsController, "as stamp owner" do
+  fixtures :all
+  integrate_views
+  
+  before(:each) do
+    activate_authlogic
+    UserSession.create(Stamp.first.user)
   end
   
   it "edit action should render edit template" do

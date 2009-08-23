@@ -1,8 +1,25 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+
+describe MarksController, "as guest" do
+  it "create action should redirect to login" do
+    post :create
+    response.should redirect_to(login_path)
+  end
+  
+  it "destroy action should redirect to login" do
+    delete :destroy, :id => Mark.first
+    response.should redirect_to(login_path)
+  end
+end
  
-describe MarksController do
+describe MarksController, "as stamp owner" do
   fixtures :all
   integrate_views
+  
+  before(:each) do
+    activate_authlogic
+    UserSession.create(Stamp.first.user)
+  end
   
   it "create action should create mark with given stamp id and date" do
     post :create, :stamp_id => Stamp.first.id, :date => "2009-02-01", :x => 123, :y => 456
