@@ -1,5 +1,6 @@
 <% title "Daily Stamp", false %>
 <% stylesheet "home" %>
+<% javascript "home" %>
 
 <%= image_tag("dailystamp_big.gif", :size => "599x157", :alt => "Daily Stamp", :id => "logo") %>
 
@@ -14,7 +15,7 @@
 
   <div id="suggestions">
     <h3>suggestions</h3>
-    <ul>
+    <ul id="suggestions_1">
       <li><a href="#">Inbox zero</a></li>
       <li><a href="#">Practice piano 30 minutes</a></li>
       <li><a href="#">Brush twice, floss once</a></li>
@@ -22,6 +23,22 @@
       <li><a href="#">Be on time</a></li>
       <li><a href="#">Keep car clean</a></li>
     </ul>
-    <p><%= link_to "more" %></p>
+    <ul id="suggestions_2" style="display: none">
+      <li><a href="#">Devotions</a></li>
+      <li><a href="#">15 pushups</a></li>
+      <li><a href="#">Don't smoke</a></li>
+      <li><a href="#">Pick up room</a></li>
+      <li><a href="#">Video games less than 2 hours</a></li>
+      <li><a href="#">Write in journal</a></li>
+    </ul>
+    <ul id="suggestions_3" style="display: none">
+      <li><a href="#">Eat less than half dessert</a></li>
+      <li><a href="#">Draw a quick sketch</a></li>
+      <li><a href="#">Write 5 pages</a></li>
+      <li><a href="#">Dishes not in sink</a></li>
+      <li><a href="#">7 hours of sleep</a></li>
+      <li><a href="#">Jog</a></li>
+    </ul>
+    <p><a href="#" class="more">more</a></p>
   </div>
 </div>
