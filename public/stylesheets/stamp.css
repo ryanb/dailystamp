@@ -86,7 +86,11 @@
   margin: 0;
   padding: 8px;
   font-size: 14px;
+}
+
+#stamp_collection .clear {
   min-width: 200px;
+  width: 200px;
 }
 
 #stamps #stamp_collection {
