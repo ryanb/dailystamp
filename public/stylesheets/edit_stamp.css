@@ -1,10 +1,16 @@
+body {
+  background-image: url(/images/dailystamp_corner.gif);
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
 #stamp_name {
   font-size: 20px;
   width: 500px;
 }
 
 #colors {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 #colors .color {
@@ -17,7 +23,7 @@
 }
 
 #stamp_images {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 #stamp_images .stamp_image {

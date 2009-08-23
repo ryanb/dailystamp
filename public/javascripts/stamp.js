@@ -33,7 +33,7 @@ $(function() {
   $("#stamps a").mouseover(function() {
     $("#stamps h2").text(this.title);
   }).mouseout(function() {
-    $("#stamps h2").text("Your Stamps");
+    $("#stamps h2").text("Stamp Collection");
   });
   
   $("#stamper a").click(function(click_event) {
