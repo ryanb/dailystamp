@@ -56,7 +56,11 @@ $(function() {
       if (!document.elementFromPoint) {
         alert("Please upgrade your browser to use this feature.");
       }
-      var element = document.elementFromPoint(event.pageX, event.pageY);
+      if (navigator.userAgent.indexOf("Firefox") != -1) {
+        var element = document.elementFromPoint(event.pageX - window.pageXOffset, event.pageY - window.pageYOffset);
+      } else {
+        var element = document.elementFromPoint(event.pageX, event.pageY);
+      }
       if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
         if (instruction_level == 2) {
           next_instructions();
