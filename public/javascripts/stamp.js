@@ -61,7 +61,7 @@ $(function() {
       } else {
         var element = document.elementFromPoint(event.pageX, event.pageY);
       }
-      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0) {
+      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0 && $(element).children("img").length == 0) {
         if (instruction_level == 2) {
           next_instructions();
         }
