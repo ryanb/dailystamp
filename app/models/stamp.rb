@@ -72,7 +72,7 @@ class Stamp < ActiveRecord::Base
   end
   
   def last_mark
-    @last_mark ||= marks.last(:order => "marked_on")
+    @last_mark ||= marks.last(:conditions => ["skip != ?", true], :order => "marked_on")
   end
   
   def calculate_score

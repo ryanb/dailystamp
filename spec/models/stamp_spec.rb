@@ -53,6 +53,14 @@ describe Stamp do
       @stamp.marks.create!(:marked_on => "2009-03-31")
       @stamp.month_points(Date.new(2009, 4)).should == [0]*30
     end
+    
+    it "should not subtract points when skip is later" do
+      Mark.delete_all
+      @stamp.marks.create!(:marked_on => "2009-04-01")
+      @stamp.marks.create!(:marked_on => "2009-04-02")
+      @stamp.marks.create!(:marked_on => "2009-04-10", :skip => true)
+      @stamp.month_points(Date.new(2009, 4)).should == [1, 2] + [0]*28
+    end
   end
   
   it "should use score cache if there is one" do
