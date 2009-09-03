@@ -8,9 +8,9 @@
   <div id="screencast">
     <a href="http://media.railscasts.com/videos/dailystamp.mov"><%= image_tag("screencast.jpg", :size => "185x238") %></a>
   </div>
-  <div id="highlights">
-    <h4>highlights</h4>
-    <% for stamp in Stamp.non_private.highlights.all(:include => :user) %>
+  <div id="recent_stamps">
+    <h4>recent stamps</h4>
+    <% for stamp in Stamp.non_private.recent.all(:include => :user, :limit => 3) %>
       <div class="stamp">
         <div class="stamper"><%= link_to image_tag("stamper/#{h(stamp.color)}/tiny.png", :size => "23x30", :alt => h(stamp.name)), stamp %></div>
         <div class="stamp_details">

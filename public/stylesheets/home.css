@@ -35,7 +35,7 @@ form #stamp_name {
   padding-top: 10px;
 }
 
-#highlights {
+#recent_stamps {
   background-color: #EEE;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -44,35 +44,34 @@ form #stamp_name {
   width: 185px;
 }
 
-#highlights h4 {
-  font-size: 16px;
+#recent_stamps h4 {
+  font-size: 15px;
   text-align: center;
   margin: 0;
-  padding-top: 3px;
-  padding-bottom: 5px;
+  padding-top: 4px;
+  padding-bottom: 7px;
   color: #999;
   font-weight: normal;
-  letter-spacing: 0.2em;
 }
 
-#highlights .stamp {
+#recent_stamps .stamp {
   padding: 3px 5px;
   font-size: 12px;
   border-top: solid 1px #BBB;
 }
 
-#highlights .stamper {
+#recent_stamps .stamper {
   float: left;
   padding-left: 5px;
   padding-top: 3px;
 }
 
-#highlights .stamp_details {
+#recent_stamps .stamp_details {
   margin-left: 35px;
   padding-top: 3px;
 }
 
-#highlights .score {
+#recent_stamps .score {
   font-size: 10px;
   color: #777;
 }
