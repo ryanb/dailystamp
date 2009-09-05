@@ -1,0 +1,22 @@
+#suggestions {
+  float: right;
+  color: #555;
+}
+
+#suggestions h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
+#suggestions ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#suggestions li {
+  margin: 0;
+  padding: 2px 0;
+}

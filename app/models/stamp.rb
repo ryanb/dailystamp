@@ -6,11 +6,13 @@ class Stamp < ActiveRecord::Base
   has_many :marks, :dependent => :destroy
   has_many :month_caches, :dependent => :destroy
   
-  attr_accessible :name, :private, :color, :stamp_image_id
+  attr_accessible :name, :private, :color, :stamp_image_id, :goal_score, :goal_reward
   validates_presence_of :name
   
   named_scope :non_private, :conditions => ["private != ?", true]
   named_scope :recent, :conditions => "score_cache > 0", :order => "updated_at desc"
+  
+  before_create :default_goal
   
   def day_points(date)
     month_points(date.beginning_of_month)[date.day-1]
@@ -28,6 +30,20 @@ class Stamp < ActiveRecord::Base
   
   def color
     read_attribute(:color).blank? ? "red" : read_attribute(:color)
+  end
+  
+  def goal_progress
+    if goal_reached?
+      100
+    elsif goal_score.nil? || goal_score.zero?
+      0
+    else
+      (score.to_f/goal_score*100).floor
+    end
+  end
+  
+  def goal_reached?
+    score >= (goal_score || 0)
   end
   
   private
@@ -82,5 +98,9 @@ class Stamp < ActiveRecord::Base
     else
       0
     end
+  end
+  
+  def default_goal
+    self.goal_score ||= 100
   end
 end

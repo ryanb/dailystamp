@@ -1,0 +1,11 @@
+<div id="score_bar" style="background-position: <%= -200 + (stamp.goal_progress*2) %>px 0">score <%=h stamp.score %></div>
+<div id="score_goal">
+  <%= stamp.goal_score %>
+  <span id="change_goal">(<%= link_to "change goal", edit_goal_stamp_path(stamp) %>)</span>
+</div>
+<% if stamp.goal_reached? && !stamp.goal_reward.empty? %>
+  <div id="goal_reward">
+    <strong>Reward:</strong>
+    <%=h stamp.goal_reward %>
+  </div>
+<% end %>

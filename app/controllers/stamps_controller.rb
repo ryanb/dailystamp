@@ -1,5 +1,5 @@
 class StampsController < ApplicationController
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy]
+  before_filter :login_required, :only => [:new, :edit, :edit_goal, :update, :destroy]
   
   def index
     if current_user && current_user.current_stamp
@@ -40,6 +40,10 @@ class StampsController < ApplicationController
   end
   
   def edit
+    @stamp = current_user.stamps.find(params[:id])
+  end
+  
+  def edit_goal
     @stamp = current_user.stamps.find(params[:id])
   end
   

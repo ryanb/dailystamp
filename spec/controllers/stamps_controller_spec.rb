@@ -37,6 +37,11 @@ describe StampsController, "as guest" do
     response.should redirect_to(login_path)
   end
   
+  it "edit_goal action should redirect to login" do
+    get :edit_goal, :id => Stamp.first
+    response.should redirect_to(login_path)
+  end
+  
   it "update action should redirect to login" do
     Stamp.any_instance.stubs(:valid?).returns(false)
     put :update, :id => Stamp.first
@@ -82,6 +87,11 @@ describe StampsController, "as stamp owner" do
   it "edit action should render edit template" do
     get :edit, :id => Stamp.first
     response.should render_template(:edit)
+  end
+  
+  it "edit_goal action should render edit_goal template" do
+    get :edit_goal, :id => Stamp.first
+    response.should render_template(:edit_goal)
   end
   
   it "update action should render edit template when model is invalid" do

@@ -133,15 +133,40 @@ h1 {
 }
 
 #score {
-  font-size: 20px;
-  font-weight: bold;
   padding: 10px 0;
+  font-weight: bold;
+}
+
+#score_bar {
+  width: 200px;
+  border: solid 1px #777;
+  background-color: #D9D9D9;
+  text-align: center;
+  padding: 2px 0;
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-image: url(/images/greenbar.png);
+  background-repeat: no-repeat;
+  background-position: -200px;
+}
+
+#score_goal {
+  margin-left: 210px;
+  padding-top: 3px;
+  padding-bottom: 7px;
+}
+
+#change_goal {
+  font-weight: normal;
+  font-size: 11px;
 }
 
 #stamp_details p {
   margin: 0;
 }
 
-#stamp_details a {
-  font-size: 14px;
+#goal_reward {
+  font-size: 11px;
+  font-weight: normal;
 }

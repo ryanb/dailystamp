@@ -84,4 +84,16 @@ describe Stamp do
   it "should default color to 'red'" do
     Stamp.new.color.should == "red"
   end
+  
+  it "should default goal_score to 100 when not set" do
+    Factory(:stamp, :goal_score => "").goal_score.should == 100
+  end
+  
+  it "should have a goal progress as percentage" do
+    Factory(:stamp, :score_cache => 5, :goal_score => 10).goal_progress.should == 50
+  end
+  
+  it "should not have goal progress go above 100" do
+    Factory(:stamp, :score_cache => 15, :goal_score => 10).goal_progress.should == 100
+  end
 end

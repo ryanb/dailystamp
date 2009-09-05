@@ -1,0 +1,26 @@
+<% title "Change Goal" %>
+<% stylesheet "generic", "edit_goal" %>
+
+<% form_for @stamp do |f| %>
+  <div id="suggestions">
+    <h3>suggestions</h3>
+    <ul>
+      <li>buy a new video game</li>
+      <li>get a manicure</li>
+      <li>go to the movies</li>
+      <li>spend $50 on myself</li>
+      <li>go out to eat</li>
+      <li>take a vacation</li>
+    </ul>
+  </div>
+  <p>
+    <%= label_tag :goal_score, "Target Score" %><br />
+    <%= f.text_field :goal_score, :size => 10 %>
+  </p>
+  <p>
+    <%= label_tag :goal_reward, "Reward Yourself" %><br />
+    <%= f.text_field :goal_reward, :size => 45 %>
+  </p>
+  <p><%= f.submit "Submit" %> or <%= link_to "cancel", @stamp %></p>
+  <div class="clear"></div>
+<% end %>
