@@ -3,7 +3,7 @@
   <%= stamp.goal_score %>
   <span id="change_goal">(<%= link_to "change goal", edit_goal_stamp_path(stamp) %>)</span>
 </div>
-<% if stamp.goal_reached? && !stamp.goal_reward.empty? %>
+<% if stamp.goal_reached? && !stamp.goal_reward.blank? %>
   <div id="goal_reward">
     <strong>Reward:</strong>
     <%=h stamp.goal_reward %>
