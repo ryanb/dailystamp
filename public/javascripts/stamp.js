@@ -16,6 +16,50 @@ function next_instructions() {
   $("#instructions").attr("src", "/images/instructions/instruction" + instruction_level + ".gif");
 }
 
+function pick_up_stamp(click_event) {
+  if (instruction_level == 1) {
+    next_instructions();
+  }
+  $("#stamper a img").change_image("ink.png");
+  $("#stamp_cursor").change_image("holding.png").show().css({
+    left: (click_event.pageX - 40) + 'px',
+    top: (click_event.pageY - 45) + 'px'
+  }).click(function(event) {
+    stamp_down(event);
+  });
+  $("body").mousemove(function(event) {
+    $("#stamp_cursor").css({
+      left: (event.pageX - 40) + 'px',
+      top: (event.pageY - 45) + 'px'
+    });
+  });
+}
+
+function stamp_down(event) {
+  $("body").unbind("mousemove");
+  $("#stamp_cursor").unbind("click").hide();
+  if (!document.elementFromPoint) {
+    alert("Please upgrade your browser to use this feature.");
+  }
+  if (navigator.userAgent.indexOf("Firefox") != -1) {
+    var element = document.elementFromPoint(event.pageX - window.pageXOffset, event.pageY - window.pageYOffset);
+  } else {
+    var element = document.elementFromPoint(event.pageX, event.pageY);
+  }
+  if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0 && $(element).children("img").length == 0) {
+    if (instruction_level == 2) {
+      next_instructions();
+    }
+    $("#stamp_cursor").change_image("stamping.png").show();
+    var p = $(element).position();
+    var x = (event.pageX - p.left);
+    var y = (event.pageY - p.top);
+    $.post($(element).children("a.mark_link").attr("href"), { x: x, y: y }, null, "script");
+  } else {
+    $("#stamper a img").change_image("ready.png");
+  }
+}
+
 $(function() {
   $("#owner #calendar td").live("click", function(event) {
     if ($(this).children("a.mark_link").length > 0) {
@@ -43,43 +87,7 @@ $(function() {
   });
   
   $("#owner #stamper a").click(function(click_event) {
-    if (instruction_level == 1) {
-      next_instructions();
-    }
-    $("#stamper a img").change_image("ink.png");
-    $("#stamp_cursor").change_image("holding.png").show().css({
-      left: (click_event.pageX - 40) + 'px',
-      top: (click_event.pageY - 45) + 'px'
-    }).click(function(event) {
-      $("body").unbind("mousemove");
-      $("#stamp_cursor").unbind("click").hide();
-      if (!document.elementFromPoint) {
-        alert("Please upgrade your browser to use this feature.");
-      }
-      if (navigator.userAgent.indexOf("Firefox") != -1) {
-        var element = document.elementFromPoint(event.pageX - window.pageXOffset, event.pageY - window.pageYOffset);
-      } else {
-        var element = document.elementFromPoint(event.pageX, event.pageY);
-      }
-      if (element.id.search(/day_/) != -1 && $(element).children("a.mark_link").length > 0 && $(element).children("img").length == 0) {
-        if (instruction_level == 2) {
-          next_instructions();
-        }
-        $("#stamp_cursor").change_image("stamping.png").show();
-        var p = $(element).position();
-        var x = (event.pageX - p.left);
-        var y = (event.pageY - p.top);
-        $.post($(element).children("a.mark_link").attr("href"), { x: x, y: y }, null, "script");
-      } else {
-        $("#stamper a img").change_image("ready.png");
-      }
-    });
-    $("body").mousemove(function(event) {
-      $("#stamp_cursor").css({
-        left: (event.pageX - 40) + 'px',
-        top: (event.pageY - 45) + 'px'
-      });
-    });
+    pick_up_stamp(click_event);
     return false;
   });
   
