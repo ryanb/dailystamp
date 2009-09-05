@@ -20,7 +20,7 @@ describe Stamp do
       ["2009-04-01", "2009-04-02", "2009-04-03", "2009-04-04", "2009-04-07"].each do |date|
         @stamp.marks.create!(:marked_on => date)
       end
-      @stamp.month_points(Date.new(2009, 4, 3)).should == [1, 2, 2, 3, -1, -2, 2, -1, -2, -2] + [0]*20
+      @stamp.month_points(Date.new(2009, 4, 3)).should == [1, 2, 2, 3, -1, -2, 2, -1, -2, -2, -2] + [0]*19
     end
     
     it "should apply score to previous month" do

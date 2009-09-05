@@ -51,4 +51,10 @@ describe ScoreTracker do
     tracker = ScoreTracker.new(:score => 123)
     tracker.score.should == 123
   end
+  
+  it "should remove remaining points from score (don't go past zero)" do
+    tracker = ScoreTracker.new(:score => 1, :negative_points => 3)
+    tracker.miss.should == -1
+    tracker.score.should == 0
+  end
 end
