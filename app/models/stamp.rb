@@ -10,7 +10,7 @@ class Stamp < ActiveRecord::Base
   validates_presence_of :name
   
   named_scope :non_private, :conditions => ["private != ?", true]
-  named_scope :recent, :order => "updated_at desc"
+  named_scope :recent, :conditions => "score_cache > 0", :order => "updated_at desc"
   
   def day_points(date)
     month_points(date.beginning_of_month)[date.day-1]
