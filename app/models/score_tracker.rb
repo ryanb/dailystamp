@@ -9,7 +9,10 @@ class ScoreTracker
   end
   
   def mark
-    @negative_points = 0
+    if @negative_points > 0
+      @negative_points = 0
+      @position = 0
+    end
     if @position >= @positive_points
       @positive_points += 1
       @position = 0

@@ -25,7 +25,7 @@ describe ScoreTracker do
   it "should slowly deduct positive points when misses" do
     4.times { @tracker.mark }
     2.times { @tracker.miss }
-    @tracker.mark.should == 2
+    @tracker.mark.should == 1
   end
   
   it "should reset position when mark is after misses" do
@@ -40,7 +40,7 @@ describe ScoreTracker do
   it "should handle complex scenarios" do
     [@tracker.mark, @tracker.mark, @tracker.mark, @tracker.miss, @tracker.mark, @tracker.mark,
       @tracker.miss, @tracker.miss, @tracker.miss, @tracker.miss, @tracker.mark].should ==
-      [1, 2, 2, -1, 2, 2, -1, -2, -2, -3, 1]
+      [1, 2, 2, -1, 1, 2, -1, -2, -2, -2, 1]
   end
   
   it "skip should continue on as if nothing happened" do
@@ -56,5 +56,13 @@ describe ScoreTracker do
     tracker = ScoreTracker.new(:score => 1, :negative_points => 3)
     tracker.miss.should == -1
     tracker.score.should == 0
+  end
+  
+  it "should go down one positive point when missing a day" do
+    tracker = ScoreTracker.new(:score => 1, :positive_points => 4, :position => 2)
+    tracker.miss.should == -1
+    tracker.mark.should == 3
+    tracker.positive_points.should == 3
+    tracker.position.should == 1
   end
 end
