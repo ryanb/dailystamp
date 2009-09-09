@@ -61,6 +61,15 @@ describe Stamp do
       @stamp.marks.create!(:marked_on => "2009-04-10", :skip => true)
       @stamp.month_points(Date.new(2009, 4)).should == [1, 2] + [0]*28
     end
+    
+    it "should only take into account first mark if there are multiple on same day" do
+      Mark.delete_all
+      @stamp.marks.create!(:marked_on => "2009-04-01")
+      @stamp.marks.create!(:marked_on => "2009-04-02", :skip => true)
+      @stamp.marks.create!(:marked_on => "2009-04-02")
+      @stamp.reload.month_points(Date.new(2009, 4)).should == [1] + [0]*29
+      @stamp.score_cache.should == 1
+    end
   end
   
   it "should use score cache if there is one" do
