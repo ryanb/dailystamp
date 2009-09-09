@@ -47,8 +47,18 @@ namespace :deploy do
   task :update_crontab, :roles => :db do
     run "cd #{release_path} && whenever --update-crontab #{application}"
   end
+  
+  desc "Make sure there is something to deploy"
+  task :check_revision, :roles => :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
 end
 
+before "deploy", "deploy:check_revision"
 after "deploy", "deploy:cleanup" # keeps only last 5 releases
 after "deploy:setup", "deploy:setup_shared"
 after "deploy:update_code", "deploy:symlink_extras"
