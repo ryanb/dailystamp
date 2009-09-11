@@ -70,6 +70,13 @@ describe Stamp do
       @stamp.reload.month_points(Date.new(2009, 4)).should == [1] + [0]*29
       @stamp.score_cache.should == 1
     end
+    
+    it "should work with just one skip" do
+      Mark.delete_all
+      @stamp.marks.create!(:marked_on => "2009-04-02", :skip => true)
+      @stamp.reload.month_points(Date.new(2009, 4)).should == [0]*30
+      @stamp.score_cache.should == 0
+    end
   end
   
   it "should use score cache if there is one" do

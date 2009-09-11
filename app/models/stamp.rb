@@ -70,7 +70,7 @@ class Stamp < ActiveRecord::Base
       if finished
         0
       elsif mark_on_day(day)
-        finished = true if last_mark.marked_on <= day
+        finished = true if last_mark.nil? || last_mark.marked_on <= day
         points = mark_on_day(day).skip? ? tracker.skip : tracker.mark
         update_attribute(:score_cache, tracker.score) if finished
         points
