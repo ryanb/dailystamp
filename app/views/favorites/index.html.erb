@@ -8,18 +8,20 @@
   </p>
 <% else %>
   <% for favorite in @favorites %>
-    <div class="stamp">
-      <div class="score">
-        <%= render :partial => "stamps/score", :locals => { :stamp => favorite.stamp } %>
+    <% unless favorite.stamp.private? %>
+      <div class="stamp">
+        <div class="score">
+          <%= render :partial => "stamps/score", :locals => { :stamp => favorite.stamp } %>
+        </div>
+        <div class="stamper"><%= link_to image_tag("stamper/#{h(favorite.stamp.color)}/small.png", :size => "40x52", :alt => h(favorite.stamp.name)), favorite.stamp %></div>
+        <h2><%=h favorite.stamp.name %></h2>
+        <p>
+          Stamp by <%=h favorite.stamp.user.display_name if favorite.stamp.user %> |
+          <%= link_to "View Details", favorite.stamp %> |
+          <%= link_to "Stop Watching", favorite, :method => :delete, :confirm => "Are you sure you want to stop watching this stamp?" %>
+        </p>
+        <div class="clear"></div>
       </div>
-      <div class="stamper"><%= link_to image_tag("stamper/#{h(favorite.stamp.color)}/small.png", :size => "40x52", :alt => h(favorite.stamp.name)), favorite.stamp %></div>
-      <h2><%=h favorite.stamp.name %></h2>
-      <p>
-        Stamp by <%=h favorite.stamp.user.display_name if favorite.stamp.user %> |
-        <%= link_to "View Details", favorite.stamp %> |
-        <%= link_to "Stop Watching", favorite, :method => :delete, :confirm => "Are you sure you want to stop watching this stamp?" %>
-      </p>
-      <div class="clear"></div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
