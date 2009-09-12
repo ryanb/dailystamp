@@ -11,12 +11,21 @@
     <% unless favorite.stamp.private? %>
       <div class="stamp">
         <div class="score">
-          <%= render :partial => "stamps/score", :locals => { :stamp => favorite.stamp } %>
+          <div class="score_bar" style="background-position: <%= -200 + (favorite.stamp.goal_progress*2) %>px 0">score <%=h favorite.stamp.score %></div>
+          <table border="0" cellspacing="0" cellpadding="0" class="days">
+            <tr>
+            <% (7.days.ago.to_date..Date.today).each do |date| %>
+              <td class="day">
+                <%= small_mark_image(favorite.stamp.marks.first(:conditions => {:marked_on => date})) %>
+              </td>
+            <% end %>
+            </tr>
+          </table>
         </div>
         <div class="stamper"><%= link_to image_tag("stamper/#{h(favorite.stamp.color)}/small.png", :size => "40x52", :alt => h(favorite.stamp.name)), favorite.stamp %></div>
         <h2><%=h favorite.stamp.name %></h2>
         <p>
-          Stamp by <%=h favorite.stamp.user.display_name if favorite.stamp.user %> |
+          by <%=h favorite.stamp.user.display_name if favorite.stamp.user %> |
           <%= link_to "View Details", favorite.stamp %> |
           <%= link_to "Stop Watching", favorite, :method => :delete, :confirm => "Are you sure you want to stop watching this stamp?" %>
         </p>

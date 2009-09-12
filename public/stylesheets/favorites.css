@@ -1,3 +1,8 @@
+#container {
+  width: 675px;
+  max-width: 675px;
+}
+
 .stamp {
   border: solid 2px #CCC;
   padding: 10px 20px;
@@ -21,7 +26,6 @@
 }
 
 .score {
-  padding-top: 15px;
   font-weight: bold;
   float: right;
 }
@@ -32,27 +36,20 @@
   background-color: #D9D9D9;
   text-align: center;
   padding: 2px 0;
-  float: left;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   background-image: url(/images/greenbar.png);
   background-repeat: no-repeat;
   background-position: -200px;
-}
-
-.score_goal {
-  margin-left: 210px;
-  padding-top: 3px;
-  padding-bottom: 7px;
+  margin-bottom: 5px;
 }
 
 .days {
   border-collapse: collapse;
-  float: right;
+  clear: both;
+  width: 200px;
 }
 
 .day {
-  border: solid 1px #000;
-  width: 30px;
-  height: 30px;
+  border: solid 1px #AAA;
 }
