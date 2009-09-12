@@ -43,16 +43,16 @@
         </p>
       <% else %>
         <p>
-          Stamp by <%=h stamp.user.display_name if stamp.user %>
+          Stamp by <%=h @stamp.user.display_name if @stamp.user %>
           <% if logged_in? %>
-            | <%= link_to "Watch this stamp", favorites_url(:stamp_id => stamp.id), :method => :post %>
+            | <%= link_to "Watch this stamp", favorites_url(:stamp_id => @stamp.id), :method => :post %>
           <% end %>
         </p>
       <% end %>
       <div id="score">
         <%= render :partial => "score", :locals => { :stamp => @stamp } %>
       </div>
-      <% if stamp_owner? && stamp.score.zero? %>
+      <% if stamp_owner? && @stamp.score.zero? %>
         <%= image_tag "instructions/instruction1.gif", :size => "135x59", :id => "instructions" %>
       <% end %>
     </div>
