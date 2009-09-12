@@ -2,6 +2,8 @@ body {
   background-color: #FFF;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 a img {
@@ -23,15 +25,38 @@ a:hover {
   overflow: hidden;
 }
 
+#header {
+  background-color: #E5E5E5;
+  padding-top: 12px;
+  padding-bottom: 6px;
+  border-bottom: solid 4px #AAA;
+  margin-bottom: 25px;
+}
+
+#header .inner {
+  width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#navigation {
+  position: absolute;
+  text-align: right;
+  right: 0;
+  bottom: 5px;
+}
+
+#navigation .links {
+  padding-top: 5px;
+}
+
+#navigation .links {
+  color: #777;
+}
+
 #container {
   width: 800px;
   margin: 0 auto;
-}
-
-#user_info {
-  text-align: center;
-  margin: 10px 0;
-  margin-bottom: 20px;
 }
 
 #flash_notice, #flash_error {

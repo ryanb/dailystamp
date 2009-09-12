@@ -8,9 +8,34 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <div id="header">
+      <div class="inner">
+        <div id="navigation">
+          <%- if logged_in? -%>
+            <%- if current_user.guest? -%>
+              <div class="message">
+                <strong>You are currently logged in as a guest.</strong></span><br />
+              Please <%= link_to "setup your account", edit_user_path(:current) %> to save your <%= link_to_if(current_user.current_stamp && !current_page?(current_user.current_stamp), "stamps", current_user.current_stamp) %>.
+              </div>
+            <%- else -%>
+              <div class="message">Welcome <%=h current_user.username %>!</div>
+              <div class="links">
+                <%= link_to "Your Stamps", current_user.current_stamp %> |
+                <%= link_to "Update Profile", edit_user_path(:current) %> |
+                <%= link_to "Log out", logout_path %>
+              </div>
+            <%- end -%>
+          <%- else -%>
+            <div class="message">
+              Already have an account? Then
+              <%= link_to "log in", login_path %>.
+            </div>
+          <%- end -%>
+        </div>
+        <%= image_tag "dailystamp_small.png", :size => "221x45", :alt => "Daily Stamp" %>
+      </div>
+    </div>
     <div id="container">
-      <%= render 'layouts/user_info' %>
-      
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>

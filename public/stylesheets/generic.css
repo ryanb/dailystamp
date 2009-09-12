@@ -1,9 +1,3 @@
-body {
-  background-image: url(/images/dailystamp_corner.gif);
-  background-position: top right;
-  background-repeat: no-repeat;
-}
-
 #container {
   width: 600px;
   max-width: 600px;

@@ -1,11 +1,25 @@
-#logo {
-  display: block;
-  margin: 40px 0;
-  margin-bottom: 50px;
+#header img {
+  display: none;
 }
 
-#user_info {
-  margin-right: 80px;
+#navigation {
+  text-align: center;
+  position: static;
+  display: block;
+}
+
+#navigation .message {
+  display: inline;
+  padding-right: 5px;
+}
+
+#navigation .links {
+  display: inline;
+}
+
+#logo {
+  margin: 40px 0;
+  margin-bottom: 50px;
 }
 
 h2 {
