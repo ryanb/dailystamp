@@ -137,7 +137,7 @@ h1 {
   font-weight: bold;
 }
 
-#score_bar {
+#score .score_bar {
   width: 200px;
   border: solid 1px #777;
   background-color: #D9D9D9;
@@ -151,7 +151,7 @@ h1 {
   background-position: -200px;
 }
 
-#score_goal {
+#score .score_goal {
   margin-left: 210px;
   padding-top: 3px;
   padding-bottom: 7px;

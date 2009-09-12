@@ -21,6 +21,7 @@
               <div class="message">Welcome <%=h current_user.username %>!</div>
               <div class="links">
                 <%= link_to "Your Stamps", current_user.current_stamp %> |
+                <%= link_to "Watched Stamps", favorites_path %> |
                 <%= link_to "Update Profile", edit_user_path(:current) %> |
                 <%= link_to "Log out", logout_path %>
               </div>

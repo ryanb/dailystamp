@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe MarksController, "as guest" do
+  fixtures :all
+  integrate_views
+  
   it "create action should redirect to login" do
     post :create
     response.should redirect_to(login_path)

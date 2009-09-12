@@ -1,0 +1,58 @@
+.stamp {
+  border: solid 2px #CCC;
+  padding: 10px 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.stamp p {
+  margin: 0;
+}
+
+.stamp h2 {
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.stamper {
+  float: left;
+  padding-right: 15px;
+}
+
+.score {
+  padding-top: 15px;
+  font-weight: bold;
+  float: right;
+}
+
+.score_bar {
+  width: 200px;
+  border: solid 1px #777;
+  background-color: #D9D9D9;
+  text-align: center;
+  padding: 2px 0;
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-image: url(/images/greenbar.png);
+  background-repeat: no-repeat;
+  background-position: -200px;
+}
+
+.score_goal {
+  margin-left: 210px;
+  padding-top: 3px;
+  padding-bottom: 7px;
+}
+
+.days {
+  border-collapse: collapse;
+  float: right;
+}
+
+.day {
+  border: solid 1px #000;
+  width: 30px;
+  height: 30px;
+}

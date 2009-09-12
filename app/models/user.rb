@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :stamps
   has_many :marks, :through => :stamps
   has_many :stamp_images
+  has_many :favorites, :dependent => :destroy
+  has_many :favorite_stamps, :through => :favorites, :source => :stamp
   belongs_to :current_stamp, :class_name => "Stamp"
   
   def guest_or_openid?
