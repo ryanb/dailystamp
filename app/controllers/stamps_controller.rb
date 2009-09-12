@@ -2,7 +2,7 @@ class StampsController < ApplicationController
   before_filter :login_required, :only => [:new, :edit, :edit_goal, :update, :destroy]
   
   def index
-    if current_user && current_user.current_stamp
+    if !params[:no_redirect] && current_user && current_user.current_stamp
       redirect_to current_user.current_stamp
     else
       @stamp = Stamp.new

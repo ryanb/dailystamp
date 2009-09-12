@@ -72,6 +72,13 @@ describe StampsController, "as stamp owner" do
     response.should redirect_to(stamp_url(Stamp.first))
   end
   
+  it "index action should render index when no redirect is specified" do
+    @current_user.current_stamp_id = Stamp.first.id
+    @current_user.save
+    get :index, :no_redirect => "true"
+    response.should render_template(:index)
+  end
+  
   it "new action should render new template" do
     get :new
     response.should render_template(:index)
