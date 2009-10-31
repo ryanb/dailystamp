@@ -3,7 +3,7 @@
   <%=h @date.strftime("%B %Y") %>
   <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
 </h2>
-<% calendar_for(@stamp.marks, :year => @date.year, :month => @date.month) do |calendar| %>
+<% calendar_for(@stamp.marks, :year => @date.year, :month => @date.month, :today => Time.zone.today) do |calendar| %>
   <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
   <% calendar.day(:day_method => :marked_on, :id => "day_%Y%m%d") do |day, marks| %>
     <% if day.month == @date.month %>

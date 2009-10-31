@@ -8,6 +8,10 @@
     <%= f.label :email, "Email Address" %><br />
     <%= f.text_field :email %>
   </p>
+  <p>
+    <%= f.label :time_zone %><br />
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
+  </p>
   <% if @user.openid_identifier.blank? %>
     <p>
       <%= f.label :password %><br />

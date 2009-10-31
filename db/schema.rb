@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090912015155) do
+ActiveRecord::Schema.define(:version => 20091031172658) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20090912015155) do
     t.integer  "current_stamp_id"
     t.string   "openid_identifier"
     t.boolean  "guest",             :default => false, :null => false
+    t.string   "time_zone"
   end
 
 end

@@ -11,7 +11,7 @@ class StampsController < ApplicationController
   
   def show
     @stamp = Stamp.find(params[:id])
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @date = params[:month] ? Date.parse(params[:month]) : Time.zone.today
     raise "Date is too far in the future" if @date.to_time > 5.years.from_now
     if current_user && @stamp.user_id == current_user.id
       current_user.current_stamp_id = @stamp.id

@@ -14,7 +14,7 @@
           <div class="score_bar" style="background-position: <%= -200 + (favorite.stamp.goal_progress*2) %>px 0">score <%=h favorite.stamp.score %></div>
           <table border="0" cellspacing="0" cellpadding="0" class="days">
             <tr>
-            <% (7.days.ago.to_date..Date.today).each do |date| %>
+            <% (7.days.ago.to_date..Time.zone.today).each do |date| %>
               <td class="day">
                 <%= small_mark_image(favorite.stamp.marks.first(:conditions => {:marked_on => date})) %>
               </td>

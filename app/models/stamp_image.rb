@@ -13,7 +13,7 @@ class StampImage < ActiveRecord::Base
     STAMP_COLORS.each do |color|
       generate_graphic_for_color(color)
     end
-    update_attribute(:generated_at, Time.now)
+    update_attribute(:generated_at, Time.zone.now)
   end
   
   def generate_graphic_for_color(color)
