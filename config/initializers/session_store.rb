@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_dailystamp_session',
-  :secret      => 'eb56cbf5d5e3b0d7c8de4271c428534b2dd3ce59f13488cb60abab274eee8b5be08eeae2d0aedbc40d4da3985f91c56a0a1651775c0a98aa75f3f9a239f66df4'
+  :key         => '_dailystamp_session2',
+  :secret      => File.read(Rails.root.join("config", "session_secret.txt")).strip
 }
 
 # Use the database for sessions instead of the cookie-based default,

@@ -4,3 +4,4 @@ tmp/**/*
 database.yml
 app_config.yml
 public/assets
+config/session_secret.txt

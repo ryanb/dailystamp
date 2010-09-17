@@ -28,6 +28,7 @@ namespace :deploy do
   task :symlink_extras do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
+    run "ln -nfs #{shared_path}/config/session_secret.txt #{release_path}/config/session_secret.txt"
     run "ln -nfs #{shared_path}/db/production.sqlite3 #{release_path}/db/production.sqlite3"
     run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
   end
@@ -40,6 +41,7 @@ namespace :deploy do
     run "mkdir #{shared_path}/db/sphinx"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
     put File.read("config/app_config.example.yml"), "#{shared_path}/config/app_config.yml"
+    put File.read("config/session_secret.example.txt"), "#{shared_path}/config/session_secret.txt"
     puts "Now edit the config files and fill assets folder in #{shared_path}."
   end
   
