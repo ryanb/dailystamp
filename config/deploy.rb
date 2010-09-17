@@ -1,4 +1,4 @@
-set :application, "dailystamp.r09.railsrumble.com"
+set :application, "dailystamp.com"
 role :app, application
 role :web, application
 role :db,  application, :primary => true
@@ -10,7 +10,7 @@ set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
 
 set :scm, "git"
-set :repository, "git@github.com:railsrumble/rr09-team-16.git"
+set :repository, "git://github.com/ryanb/dailystamp.git"
 set :branch, "master"
 
 namespace :deploy do
