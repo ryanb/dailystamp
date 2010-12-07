@@ -27,7 +27,7 @@ describe Mark do
   it "should clear future month cache of stamp when creating" do
     stamp = Factory(:stamp)
     cache1 = stamp.month_caches.create!(:for_month => 2.months.ago)
-    cache2 = stamp.month_caches.create!(:for_month => Time.zone.beginning_of_month)
+    cache2 = stamp.month_caches.create!(:for_month => Time.now.beginning_of_month)
     stamp.marks.create!(:marked_on => Time.zone.today)
     MonthCache.exists?(cache1).should be_true
     MonthCache.exists?(cache2).should be_false
