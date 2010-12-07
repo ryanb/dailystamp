@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
+Dailystamp::Application.routes.draw do |map|
   map.resources :favorites
 
   map.signup 'signup', :controller => 'users', :action => 'new'
