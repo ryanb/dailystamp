@@ -9,7 +9,6 @@ gem "rack-openid", :require => "rack/openid"
 gem "paperclip"
 gem "rmagick", :require => "RMagick"
 gem "jquery-rails"
-gem "whenever", :require => false
 
 group :development, :test do
   gem "mocha"

@@ -1,6 +1,4 @@
-set :whenever_command, "bundle exec whenever"
 require "bundler/capistrano"
-require "whenever/capistrano"
 
 set :application, "beta.dailystamp.com"
 role :app, application
