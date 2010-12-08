@@ -28,7 +28,7 @@ describe User do
   it "should require username when password when nothing given" do
     user = User.new
     user.should_not be_valid
-    user.errors.on(:username).should =~ /too short/
-    user.errors.on(:password).should =~ /too short/
+    user.errors[:username].to_s.should =~ /too short/
+    user.errors[:password].to_s.should =~ /too short/
   end
 end

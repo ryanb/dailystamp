@@ -9,8 +9,8 @@ class Stamp < ActiveRecord::Base
   attr_accessible :name, :private, :color, :stamp_image_id, :goal_score, :goal_reward
   validates_presence_of :name
   
-  named_scope :non_private, :conditions => ["private != ?", true]
-  named_scope :recent, :conditions => "score_cache > 0", :order => "updated_at desc"
+  scope :non_private, where("private != ?", true)
+  scope :recent, where("score_cache > 0").order("updated_at desc")
   
   before_create :default_goal
   

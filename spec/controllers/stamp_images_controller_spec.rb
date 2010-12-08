@@ -19,7 +19,7 @@ end
  
 describe StampImagesController, "as user" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic

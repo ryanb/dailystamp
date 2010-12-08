@@ -17,7 +17,6 @@
 module Authentication
   def self.included(controller)
     controller.send :helper_method, :current_user, :logged_in?, :redirect_to_target_or_default
-    controller.filter_parameter_logging :password
   end
   
   def current_user_session
@@ -50,6 +49,6 @@ module Authentication
   private
   
   def store_target_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 end

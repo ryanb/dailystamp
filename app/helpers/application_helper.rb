@@ -1,4 +1,3 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def mark_image(mark, size = 70)
     options = {:size => "#{size}x#{size}", :class => "mark"}

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe MarksController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it "create action should redirect to login" do
     post :create
@@ -17,7 +17,7 @@ end
  
 describe MarksController, "as stamp owner" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic

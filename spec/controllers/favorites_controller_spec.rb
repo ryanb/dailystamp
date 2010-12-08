@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe FavoritesController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it "index action should redirect to login" do
     get :index
@@ -22,7 +22,7 @@ end
  
 describe FavoritesController, "as owner" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic

@@ -5,10 +5,10 @@ module TableHelper
     options = args.last.is_a?(Hash) ? args.pop : {}
     html_options = options[:html]
     builder = options[:builder] || TableBuilder
-    
-    concat(tag(:table, html_options, true))
-    yield builder.new(objects || [], self, options)
-    concat('</table>')
+
+    content_tag(:table, html_options) do
+      yield builder.new(objects || [], self, options)
+    end
   end
 
   class TableBuilder
@@ -28,7 +28,7 @@ module TableHelper
         @num_of_columns = args.size
         content_tag(:thead,
           content_tag(:tr,
-            args.collect { |c| content_tag(:th, c)}.join('')
+            args.collect { |c| content_tag(:th, c.html_safe)}.join('').html_safe
           )
         )
       end
@@ -59,7 +59,7 @@ module TableHelper
         @objects.each { |c|
           concat(tag(:tr, options, true))
           yield(c)
-          concat('</tr>')
+          concat('</tr>'.html_safe)
         }
       end
     end    
@@ -102,7 +102,8 @@ module TableHelper
     end
     
     def concat(tag)
-       @template.concat(tag)
+      @template.safe_concat(tag)
+      ""
     end
 
     def content_tag(tag, content, *args)

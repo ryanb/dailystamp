@@ -1,16 +1,19 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :favorites
-
-  map.signup 'signup', :controller => 'users', :action => 'new'
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.home 'home', :controller => 'stamps', :action => 'index', :no_redirect => "true"
+Dailystamp::Application.routes.draw do
+  root :to => 'stamps#index'
   
-  map.resources :user_sessions
-  map.resources :users
-  map.resources :stamp_images
-  map.resources :marks
-  map.resources :stamps, :member => { :edit_goal => :get }
+  match 'signup' => 'users#new', :as => 'signup'
+  match 'logout' => 'user_sessions#destroy', :as => 'logout'
+  match 'login' => 'user_sessions#new', :as => 'login'
+  match 'home' => 'stamps#index', :as => 'home', :no_redirect => 'true'
   
-  map.root :stamps
+  resources :user_sessions
+  resources :users
+  resources :favorites
+  resources :stamp_images
+  resources :marks
+  resources :stamps do
+    member do
+      get :edit_goal
+    end
+  end
 end

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
  
 describe UsersController, "as a guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it "new action should render new template" do
     get :new
@@ -34,7 +34,7 @@ end
 
 describe UsersController, "as a user" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic

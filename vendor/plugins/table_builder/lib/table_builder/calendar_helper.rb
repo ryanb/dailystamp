@@ -6,9 +6,9 @@ module CalendarHelper
     html_options = options[:html]
     builder = options[:builder] || CalendarBuilder
     calendar = options[:calendar] || Calendar
-    concat(tag(:table, html_options, true))
-    yield builder.new(objects || [], self, calendar, options)
-    concat('</table>')
+    content_tag(:table, nil, html_options) do
+      yield builder.new(objects || [], self, calendar, options)
+    end
   end
 
   class CalendarBuilder < TableHelper::TableBuilder
@@ -16,8 +16,8 @@ module CalendarHelper
       super(objects, template, options)
       @calendar = calendar.new(options)
       @today = options[:today] || Time.now
-    end    
-    
+    end
+
     def day(*args)
       raise ArgumentError, "Missing block" unless block_given?
       options = options_from_hash(args)
@@ -41,19 +41,16 @@ module CalendarHelper
     def objects_for_days
       @calendar.objects_for_days(@objects)
     end
-    
+
     def td_options(day, id_pattern)
       options = {}
-      if(day.strftime("%Y-%m-%d") ==  @today.strftime("%Y-%m-%d"))
-        options[:class] = 'today'
-      elsif(day.month != @calendar.month)
-        options[:class] = 'notmonth'
-      elsif(day.wday == 0 or day.wday == 6)
-        options[:class] = 'weekend'
-      end
-      if id_pattern
-        options[:id] = day.strftime(id_pattern)
-      end
+      css_classes = []
+      css_classes << 'today'    if day.strftime("%Y-%m-%d") ==  @today.strftime("%Y-%m-%d")
+      css_classes << 'notmonth' if day.month != @calendar.month
+      css_classes << 'weekend'  if day.wday == 0 or day.wday == 6
+      css_classes << 'future'   if day > @today.to_date
+      options[:class] = css_classes.join(' ') unless css_classes.empty?
+      options[:id]    = day.strftime(id_pattern) if id_pattern
       options
     end
 
@@ -61,16 +58,31 @@ module CalendarHelper
 
   class Calendar
     attr_accessor :first_weekday, :last_weekday, :month
+
+    # :first lets you set the first day to start the calendar on (default is the first day of the given :month and :year).
+    #   :first => :today will use Date.today
+    # :last lets you set the last day of the calendar (default is the last day of the given :month and :year).
+    #   :last => :thirty will show 30 days from :first
+    #   :last => :week will show one week
     def initialize(options={})
-      @year = options[:year] || Time.now.year
-      @month = options[:month] || Time.now.month
-      @first_day_of_week = options[:first_day_of_week] || 0
-      @first_weekday = first_day_of_week(@first_day_of_week)
-      @last_weekday = last_day_of_week(@first_day_of_week)
-      @first = Date.civil(@year, @month, 1)
-      @last = Date.civil(@year, @month, -1)           
+      @year               = options[:year] || Time.now.year
+      @month              = options[:month] || Time.now.month
+      @first_day_of_week  = options[:first_day_of_week] || 0
+      @first_weekday      = first_day_of_week(@first_day_of_week)
+      @last_weekday       = last_day_of_week(@first_day_of_week)
+
+      @first = options[:first]==:today ? Date.today : options[:first] || Date.civil(@year, @month, 1)
+
+      if options[:last] == :thirty_days || options[:last] == :thirty
+        @last = @first + 30
+      elsif options[:last] == :one_week || options[:last] == :week
+        @last = @first
+      else
+        @last = options[:last] || Date.civil(@year, @month, -1)
+      end
+
     end
-    
+
     def each_day
       first_day.upto(last_day) do |day|
         yield(day)
@@ -81,18 +93,18 @@ module CalendarHelper
       last = @last
       while(last.wday % 7 != @last_weekday % 7)
         last = last.next
-      end   
+      end
       last
     end
-    
+
     def first_day
       first = @first - 6
       while(first.wday % 7 != (@first_weekday) % 7)
         first = first.next
       end
       first
-    end      
-    
+    end
+
     def objects_for_days(objects, day_method)
       unless @objects_for_days
         @objects_for_days = {}
@@ -106,34 +118,34 @@ module CalendarHelper
       end
       @objects_for_days
     end
-    
+
     def days
       unless @days
         @days = []
-        each_day{|day| @days << day} 
+        each_day{|day| @days << day}
       end
-      @days     
-    end    
-    
+      @days
+    end
+
     def mjdays
       unless @mjdays
         @mdays = []
-        each_day{|day| @days << day} 
+        each_day{|day| @days << day}
       end
-      @days     
-    end    
-    
+      @days
+    end
+
     def first_day_of_week(day)
       day
     end
-    
+
     def last_day_of_week(day)
       if day > 0
         day - 1
       else
         6
       end
-    end    
+    end
   end
 
 end
