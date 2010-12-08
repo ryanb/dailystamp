@@ -115,15 +115,18 @@ If you want to add id's to your td tag you can pass a pattern:
 
 script/plugin install git://github.com/p8/table_builder.git
 
-If you get the following error:
-   ActionView::TemplateError (wrong number of arguments (1 for 2))
+For a pre rails 3.0 table_builder:
+  script/plugin install git://github.com/p8/table_builder.git
+  cd vendor/plugins/table_builder/
+  git checkout pre-rails-2.2
 
-You can try an older pre rails 2.2 table_builder:
+For a pre rails 2.2 table_builder:
+  script/plugin install git://github.com/p8/table_builder.git
   cd vendor/plugins/table_builder/
   git checkout pre-rails-2.2
   
 == Contributors
 
-Thanks to Sean Dague.
+Thanks to Sean Dague, F. Kocherga, John Duff.
 
 Copyright (c) 2008 Petrik de Heus, released under the MIT license

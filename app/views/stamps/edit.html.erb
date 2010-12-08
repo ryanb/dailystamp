@@ -5,7 +5,7 @@
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 <% end %>
 
-<% form_for @stamp do |f| %>
+<%= form_for @stamp do |f| %>
   <%= f.error_messages %>
   <p><%= f.text_field :name %></p>
   <p><%= f.check_box :private %> <%= f.label :private, "Keep this stamp private" %></p>

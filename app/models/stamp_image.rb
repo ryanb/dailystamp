@@ -18,7 +18,7 @@ class StampImage < ActiveRecord::Base
   
   def generate_graphic_for_color(color)
     source = Magick::Image.read(photo.path).first
-    stamp_overlay = Magick::Image.read("#{RAILS_ROOT}/public/images/stamp_image_overlay.png").first
+    stamp_overlay = Magick::Image.read("#{Rails.root}/public/images/stamp_image_overlay.png").first
     source.resize_to_fill!(stamp_overlay.columns, stamp_overlay.rows)
     source = source.quantize(256, Magick::GRAYColorspace).contrast(true)
     source.composite!(stamp_overlay, Magick::CenterGravity, 0, 0, Magick::OverCompositeOp)

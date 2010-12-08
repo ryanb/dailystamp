@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
  
 describe StampsController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it "index action should render index template" do
     get :index
@@ -57,7 +57,7 @@ end
 
 describe StampsController, "as stamp owner" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic
@@ -132,7 +132,7 @@ end
 
 describe StampsController, "as another user" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     activate_authlogic
